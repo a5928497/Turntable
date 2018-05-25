@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)
-public class Users {
+public class User {
     private Integer id;
     private String username;
     private String passsword;
