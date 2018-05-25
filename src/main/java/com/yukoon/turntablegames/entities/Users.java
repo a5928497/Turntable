@@ -1,4 +1,4 @@
-package com.yukoon.entities;
+package com.yukoon.turntablegames.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

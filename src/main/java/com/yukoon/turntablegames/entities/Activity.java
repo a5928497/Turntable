@@ -1,4 +1,4 @@
-package com.yukoon.entities;
+package com.yukoon.turntablegames.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)
-public class Activities {
+public class Activity {
     private Integer id;
     private String activityName;
     private Integer status;
