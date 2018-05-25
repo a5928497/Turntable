@@ -19,4 +19,7 @@ public interface ActivityMapper {
 
     @Select("Select id,activityName FROM activities")
     public List<Activity> findAll();
+
+    @Select("SELECT activityName FROM activities WHERE id= #{id}")
+    public String findById(Integer id);
 }
