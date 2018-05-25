@@ -12,9 +12,9 @@ public class RewardController {
     RewardService rewardService;
 
     @GetMapping("/test1")
-    public String test() {
-        Reward reward = new Reward().setRewardName("123").setTotal(5).setSurplus(5).setProbability(0.32F).setAct_id(1);
-        rewardService.addReward(reward);
-        return  reward.toString();
+    public boolean test() {
+        Reward reward = new Reward().setRewardName("123").setTotal(5).setSurplus(5).setProbability(0.32F).setAct_id(11);
+        boolean flag = rewardService.addReward(reward);
+        return  flag;
     }
 }
