@@ -15,13 +15,14 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(Map<String,Object> map, User user){
+        System.out.println(user);
         User user_temp = userService.login(user);
         if (user_temp != null) {
             map.put("User",user_temp);
         }
-        if (user_temp.getAct_id() == 1) {
-            return "background";
+        if (user_temp.getRole_id() == 2) {
+            return "background/bg_index";
         }
-        return "draw";
+        return "public/pb_index";
     }
 }

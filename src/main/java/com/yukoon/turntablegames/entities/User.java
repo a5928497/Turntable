@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 public class User {
     private Integer id;
     private String username;
-    private String passsword;
+    private String password;
     private Integer role_id;
     private Integer act_id;
     private Integer draw_times;
