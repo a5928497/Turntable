@@ -11,12 +11,18 @@ import java.util.List;
 
 @Service
 public class ActivityService {
+    //生成key的长度
+    private static final int KEY_LENGTH = 4;
     @Autowired
     private ActivityMapper activityMapper;
 
     @Transactional
     public void addAct(Activity activity) {
-        activity.setKey(KeyUtil.getKey(4));
+        String key = KeyUtil.getKey(KEY_LENGTH);
+        while (activityMapper.keyVaildate(key) != null) {
+            key = KeyUtil.getKey(KEY_LENGTH);
+        }
+        activity.setKey(key);
         activityMapper.addAct(activity);
     }
 

@@ -14,7 +14,7 @@ public class User {
     private String username;
     private String passsword;
     private Integer role_id;
-    private String act_id;
+    private Integer act_id;
     private Integer draw_times;
     private Integer available_draw_times;
 }
