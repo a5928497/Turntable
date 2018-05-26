@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bg</title>
+</head>
+<body>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>手机号</td>
+        <td>总次数</td>
+        <td>剩余次数</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user:${users}">
+        <td th:text="${user.id}">id</td>
+        <td th:text="${user.username}">username</td>
+        <td th:text="${user.draw_times}">draw_times</td>
+        <td th:text="${user.available_draw_times}">available_draw_times</td>
+        <td>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
