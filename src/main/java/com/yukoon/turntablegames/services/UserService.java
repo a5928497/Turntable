@@ -27,4 +27,9 @@ public class UserService {
     public List<User> findAllByActID(Integer id) {
         return usersMapper.findAllByActId(id);
     }
+
+    @Transactional
+    public void delUser(Integer id) {
+        usersMapper.delUser(id);
+    }
 }

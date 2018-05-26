@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.mappers;
 
 import com.yukoon.turntablegames.entities.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,5 +19,8 @@ public interface UsersMapper {
 
     @Select("SELECT id,username,draw_times,available_draw_times FROM users WHERE act_id =#{act_id}")
     public List<User> findAllByActId(Integer act_id);
+
+    @Delete("DELETE FROM users WHERE id = #{id}")
+    public void delUser(Integer id);
 
 }
