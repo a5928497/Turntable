@@ -29,6 +29,16 @@ public class UserService {
     }
 
     @Transactional
+    public User findById(Integer id) {
+        return usersMapper.findById(id);
+    }
+
+    @Transactional
+    public void updateUser(User user) {
+        usersMapper.updateUser(user);
+    }
+
+    @Transactional
     public void delUser(Integer id) {
         usersMapper.delUser(id);
     }

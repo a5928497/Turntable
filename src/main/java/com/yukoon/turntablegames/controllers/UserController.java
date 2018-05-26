@@ -4,10 +4,7 @@ import com.yukoon.turntablegames.entities.User;
 import com.yukoon.turntablegames.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -42,5 +39,18 @@ public class UserController {
     public String delUser(@PathVariable("id")Integer id,Integer act_id) {
         userService.delUser(id);
         return "redirect:/users/"+act_id;
+    }
+
+    @GetMapping("/user/{id}")
+    public String toEditUser(@PathVariable("id")Integer id,Map<String,Object> map) {
+        User user = userService.findById(id);
+        map.put("user",user);
+        return "background/user_input";
+    }
+
+    @PutMapping("/user")
+    public String editUser(User user) {
+        userService.updateUser(user);
+        return "redirect:/users/"+user.getAct_id();
     }
 }

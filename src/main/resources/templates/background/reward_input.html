@@ -21,7 +21,7 @@
         <input type="text" name="surplus" th:if="${reward==null}" /><br>
         <label>概率:</label>
         <input type="text" id="probability" name="probability" th:value="${reward!=null}?${reward.probability}" /><br>
-        <input type="hidden" id="act_id" name="act_id" th:value="${act_id}" />
+        <input type="hidden" id="act_id" name="act_id" th:value="${reward.act_id}" />
         <button id="submit_BTN" >Submit</button>
     </form>
 </body>

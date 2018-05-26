@@ -1,10 +1,7 @@
 package com.yukoon.turntablegames.mappers;
 
 import com.yukoon.turntablegames.entities.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,6 +16,12 @@ public interface UsersMapper {
 
     @Select("SELECT id,username,draw_times,available_draw_times FROM users WHERE act_id =#{act_id}")
     public List<User> findAllByActId(Integer act_id);
+
+    @Select("SELECT id,username,act_id,draw_times,available_draw_times FROM users WHERE id=#{id}")
+    public User findById(Integer id);
+
+    @Update("UPDATE users SET username = #{username},draw_times=#{draw_times},available_draw_times = #{available_draw_times} WHERE id = #{id}")
+    public void updateUser(User user);
 
     @Delete("DELETE FROM users WHERE id = #{id}")
     public void delUser(Integer id);
