@@ -19,11 +19,14 @@
     <tr th:each="act:${acts}">
         <td th:text="${act.id}">ID</td>
         <td th:text="${act.activityName}">activityName</td>
-        <td th:text="${act.act_status == 0}?关闭:开启">status</td>
+        <td th:text="未启用" th:if="${act.act_status==0}">status</td>
+        <td th:text="进行中" th:if="${act.act_status==1}">status</td>
+        <td th:text="已结束" th:if="${act.act_status==2}">status</td>
         <td th:text="${act.act_key}">key</td>
         <td>
             <a href="" th:href="@{/rewards/}+${act.id}" >礼品管理</a>
-            <a href="" th:href="@{/actclose/}+${act.id}" >关闭活动</a>
+            <a href="" th:href="@{/actclose/}+${act.id}" th:if="${act.act_status==1}" >关闭活动</a>
+            <a href="" th:href="@{/actopen/}+${act.id}" th:if="${act.act_status==0}">开启活动</a>
         </td>
     </tr>
     </tbody>

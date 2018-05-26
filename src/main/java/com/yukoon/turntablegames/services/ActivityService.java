@@ -23,7 +23,7 @@ public class ActivityService {
             key = KeyUtil.getKey(KEY_LENGTH);
         }
         activity.setAct_key(key);
-        activity.setAct_status(1);
+        activity.setAct_status(0);
         System.out.println(activity);
         activityMapper.addAct(activity);
     }
@@ -31,6 +31,11 @@ public class ActivityService {
     @Transactional
     public void closeAct(Integer id) {
         activityMapper.closeAct(id);
+    }
+
+    @Transactional
+    public void openAct(Integer id) {
+        activityMapper.openAct(id);
     }
 
     public List<Activity> findAll() {

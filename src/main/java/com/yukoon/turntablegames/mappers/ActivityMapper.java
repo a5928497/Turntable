@@ -14,8 +14,11 @@ public interface ActivityMapper {
     @Insert("INSERT INTO activities(activityName,act_status,act_key) VALUES(#{activityName},#{act_status},#{act_key})")
     public void addAct(Activity activity);
 
-    @Update("UPDATE activities SET act_status = 0 WHERE id = #{id}")
+    @Update("UPDATE activities SET act_status = 2 WHERE id = #{id}")
     public void closeAct(Integer id);
+
+    @Update("UPDATE activities SET act_status = 1 WHERE id = #{id}")
+    public void openAct(Integer id);
 
     @Select("Select id,activityName,act_status,act_key FROM activities WHERE act_key != 'admin'")
     public List<Activity> findAll();

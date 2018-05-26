@@ -41,4 +41,10 @@ public class ActivityController {
         activityService.closeAct(id);
         return "redirect:/acts";
     }
+
+    @GetMapping("/actopen/{id}")
+    public  String actOpen(@PathVariable("id") Integer id) {
+        activityService.openAct(id);
+        return "redirect:/acts";
+    }
 }
