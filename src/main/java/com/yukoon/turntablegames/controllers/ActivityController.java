@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 public class ActivityController {
     @Autowired
@@ -21,6 +24,14 @@ public class ActivityController {
 
     @GetMapping("/act")
     public String actToAdd() {
-        return "/background/act_input";
+        return "background/act_input";
+    }
+
+    @GetMapping("/acts")
+    public String list(Map<String,Object> map) {
+        List<Activity> list  = activityService.findAll();
+        System.out.println(list);
+        map.put("acts",list);
+        return "background/act_list";
     }
 }

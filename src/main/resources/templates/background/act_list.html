@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bg</title>
+</head>
+<body>
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>活动名</td>
+        <td>开启</td>
+        <td>口令</td>
+        <td>Options</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="act:${acts}">
+        <td th:text="${act.id}">ID</td>
+        <td th:text="${act.activityName}">activityName</td>
+        <td th:text="${act.act_status == 0}?关闭:开启">status</td>
+        <td th:text="${act.act_key}">key</td>
+        <td>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

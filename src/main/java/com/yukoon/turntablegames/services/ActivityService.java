@@ -22,8 +22,8 @@ public class ActivityService {
         while (activityMapper.keyVaildate(key) != null) {
             key = KeyUtil.getKey(KEY_LENGTH);
         }
-        activity.setKey(key);
-        activity.setStatus(1);
+        activity.setAct_key(key);
+        activity.setAct_status(1);
         System.out.println(activity);
         activityMapper.addAct(activity);
     }

@@ -12,6 +12,6 @@ import lombok.experimental.Accessors;
 public class Activity {
     private Integer id;
     private String activityName;
-    private Integer status;
-    private String key;
+    private Integer act_status;
+    private String act_key;
 }
