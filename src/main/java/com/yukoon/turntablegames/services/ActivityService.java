@@ -23,6 +23,8 @@ public class ActivityService {
             key = KeyUtil.getKey(KEY_LENGTH);
         }
         activity.setKey(key);
+        activity.setStatus(1);
+        System.out.println(activity);
         activityMapper.addAct(activity);
     }
 

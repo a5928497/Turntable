@@ -2,22 +2,25 @@ package com.yukoon.turntablegames.controllers;
 
 import com.yukoon.turntablegames.entities.Activity;
 import com.yukoon.turntablegames.mappers.ActivityMapper;
+import com.yukoon.turntablegames.services.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
-@RestController
+@Controller
 public class ActivityController {
     @Autowired
-    private ActivityMapper activityMapper;
+    private ActivityService activityService;
 
-    @GetMapping("test")
-    public List<Activity> test() {
-        Activity activity = new Activity();
-        activity.setActivityName("活动1").setKey("sfa").setStatus(1);
-//        activityMapper.closeAct(1);
-        return activityMapper.findAll();
+    @PostMapping("/act")
+    public String actAdd(Activity activity) {
+        activityService.addAct(activity);
+        return "redirect:background/bg_index.html";
+    }
+
+    @GetMapping("/act")
+    public String actToAdd() {
+        return "/background/act_input";
     }
 }
