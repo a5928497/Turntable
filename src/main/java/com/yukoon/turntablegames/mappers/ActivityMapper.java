@@ -31,4 +31,7 @@ public interface ActivityMapper {
 
     @Select("SELECT act_key FROM activities WHERE act_key = #{act_key}")
     public String keyVaildate(String act_key);
+
+    @Select("SELECT act_key FROM activities WHERE id = #{act_id}")
+    public String getKeyByActId(Integer act_id);
 }

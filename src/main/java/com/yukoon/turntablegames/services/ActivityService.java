@@ -38,6 +38,11 @@ public class ActivityService {
         activityMapper.openAct(id);
     }
 
+    @Transactional
+    public String getKeyByActId(Integer id ){
+        return activityMapper.getKeyByActId(id);
+    }
+
     public List<Activity> findAll() {
         return activityMapper.findAll();
     }

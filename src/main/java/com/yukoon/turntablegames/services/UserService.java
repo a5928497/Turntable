@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.services;
 
 import com.yukoon.turntablegames.entities.User;
+import com.yukoon.turntablegames.mappers.ActivityMapper;
 import com.yukoon.turntablegames.mappers.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private ActivityMapper activityMapper;
 
     @Transactional
     public User login(User user) {
@@ -36,6 +39,11 @@ public class UserService {
     @Transactional
     public void updateUser(User user) {
         usersMapper.updateUser(user);
+    }
+    @Transactional
+    public void addUser(User user) {
+        user.setPassword(activityMapper.getKeyByActId(user.getAct_id())).setRole_id(1);
+        usersMapper.addUser(user);
     }
 
     @Transactional

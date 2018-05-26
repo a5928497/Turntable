@@ -53,4 +53,17 @@ public class UserController {
         userService.updateUser(user);
         return "redirect:/users/"+user.getAct_id();
     }
+
+    @GetMapping("/useradd/{id}")
+    public String toAddUser(@PathVariable("id")Integer id,Map<String,Object> map) {
+        map.put("act_id",id);
+        return "background/user_input";
+    }
+
+    @PostMapping("/user")
+    public String addUser(User user) {
+        System.out.println(user);
+        userService.addUser(user);
+        return "redirect:/users/"+user.getAct_id();
+    }
 }

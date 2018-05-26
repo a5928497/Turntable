@@ -5,6 +5,7 @@
     <title>bg</title>
 </head>
 <body>
+
     <form action="/user" method="post" modelAttribute="user" id="inputForm">
         <label>手机号:</label>
         <!--若为修改，加入id-->
@@ -17,7 +18,7 @@
         <input type="text" id="draw_times" name="draw_times" th:value="${user!=null}?${user.draw_times}" /><br>
         <label>剩余次数:</label>
         <input type="text" name="available_draw_times" th:value="${user!=null}?${user.available_draw_times}" /><br>
-        <input type="hidden" id="act_id" name="act_id" th:value="${user.act_id}" />
+        <input type="hidden" id="act_id" name="act_id" th:value="${user!=null}?${user.act_id}:${act_id}" />
         <button id="submit_BTN" >Submit</button>
     </form>
 </body>
