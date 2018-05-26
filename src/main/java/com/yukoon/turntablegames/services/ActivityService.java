@@ -19,7 +19,7 @@ public class ActivityService {
     @Transactional
     public void addAct(Activity activity) {
         String key = KeyUtil.getKey(KEY_LENGTH);
-        while (activityMapper.keyVaildate(key) != null) {
+        while (activityMapper.keyVaildate(key) != null || key.equals("admin")) {
             key = KeyUtil.getKey(KEY_LENGTH);
         }
         activity.setAct_key(key);

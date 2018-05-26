@@ -12,7 +12,7 @@
         <td>活动名</td>
         <td>开启</td>
         <td>口令</td>
-        <td>Options</td>
+        <td>操作</td>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +22,8 @@
         <td th:text="${act.act_status == 0}?关闭:开启">status</td>
         <td th:text="${act.act_key}">key</td>
         <td>
+            <a href="" th:href="@{/rewards/}+${act.id}" >礼品管理</a>
+            <a href="" th:href="@{/actclose/}+${act.id}" >关闭活动</a>
         </td>
     </tr>
     </tbody>

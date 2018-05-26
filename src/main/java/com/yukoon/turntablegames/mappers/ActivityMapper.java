@@ -17,7 +17,7 @@ public interface ActivityMapper {
     @Update("UPDATE activities SET act_status = 0 WHERE id = #{id}")
     public void closeAct(Integer id);
 
-    @Select("Select id,activityName,act_status,act_key FROM activities")
+    @Select("Select id,activityName,act_status,act_key FROM activities WHERE act_key != 'admin'")
     public List<Activity> findAll();
 
     @Select("SELECT activityName FROM activities WHERE id= #{id}")

@@ -15,10 +15,10 @@ public interface RewardMapper {
     @Delete("DELETE FROM rewards WHERE id = #{id}")
     public void delReward(Integer id);
 
-    @Update("UPDATE rewards SET rewardName=#{rewardName},total=#{total},surplus=#{surplus},probability=#{probability},act_id=#{act_id}")
+    @Update("UPDATE rewards SET rewardName=#{rewardName},total=#{total},surplus=#{surplus},probability=#{probability},act_id=#{act_id} WHERE id = #{id}")
     public void updateReward(Reward reward);
 
-    @Select("SELECT id,rewardName FROM rewards WHERE act_id = #{act_id}")
+    @Select("SELECT id,rewardName,total,surplus,probability FROM rewards WHERE act_id = #{act_id}")
     public List<Reward> findByActid(Integer act_id);
 
     @Select("SELECT * from rewards WHERE id = #{id}")
