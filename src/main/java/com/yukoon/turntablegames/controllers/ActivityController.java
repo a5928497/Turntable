@@ -31,7 +31,6 @@ public class ActivityController {
     @GetMapping("/acts")
     public String list(Map<String,Object> map) {
         List<Activity> list  = activityService.findAll();
-        System.out.println(list);
         map.put("acts",list);
         return "background/act_list";
     }

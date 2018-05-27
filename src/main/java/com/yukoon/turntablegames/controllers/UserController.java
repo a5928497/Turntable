@@ -16,10 +16,9 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(Map<String,Object> map, User user){
-        System.out.println(user);
         User user_temp = userService.login(user);
         if (user_temp != null) {
-            map.put("User",user_temp);
+            map.put("user",user_temp);
         }
         if (user_temp.getRole_id() == 2) {
             return "background/bg_index";

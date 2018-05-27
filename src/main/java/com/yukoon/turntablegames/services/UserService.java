@@ -20,7 +20,6 @@ public class UserService {
     public User login(User user) {
         User user_temp = usersMapper.login(user);
         if (user_temp != null && user.getPassword().equals(user_temp.getPassword())) {
-            System.out.println(user_temp);
             return user_temp;
         }
         return null;

@@ -5,6 +5,8 @@
     <title>pb</title>
 </head>
 <body>
-
+        <p th:text="您好，+${user.username}"></p>
+        <p th:text="您共有+${user.draw_times}+次抽奖机会"></p>
+        <p th:text="您还剩下+${user.available_draw_times}+次抽奖机会"></p>
 </body>
 </html>

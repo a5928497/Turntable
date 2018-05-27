@@ -34,7 +34,6 @@
     </tr>
     </tbody>
 </table>
-<!-- delete表单-->
 <form id="cashingForm" method="post">
     <input type="hidden" name="_method" value="put">
     <input type="hidden" name="act_id" th:value="${act_id}">
@@ -44,7 +43,10 @@
     $cashingBTN = $(".cashingBTN");
     $cashingForm = $("#cashingForm");
     $cashingBTN.click(function () {
-        $cashingForm.attr("action",$(this).attr("put_uri")).submit();
+        var isOk = confirm("确定兑换吗？");
+        if (isOk == true) {
+            $cashingForm.attr("action",$(this).attr("put_uri")).submit();
+        }
         return false;
     });
 </script>
