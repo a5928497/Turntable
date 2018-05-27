@@ -35,6 +35,14 @@ public class UserController {
         return "background/user_list";
     }
 
+    @PostMapping("/finduser")
+    public String finduser(User user,Map<String,Object> map) {
+        List<User> list = userService.findByUsernameAndActid(user);
+        map.put("users",list);
+        map.put("act_id",user.getAct_id());
+        return "background/user_list";
+    }
+
     @DeleteMapping("/user/{id}")
     public String delUser(@PathVariable("id")Integer id,Integer act_id) {
         userService.delUser(id);

@@ -5,6 +5,13 @@
     <title>bg</title>
 </head>
 <body>
+<form action="/finduser" method="post" modelAttribut="user">
+    <label>客户名</label>
+    <input type="text" name="username">
+    <input type="hidden" name="act_id" th:value="${act_id}">
+    <input type="submit" value="搜索">
+</form>
+<a th:href="@{/users/}+${act_id}" ><button>全部</button></a>
 <a th:href="@{/useradd/}+${act_id}"><button>增加客户</button></a>
 <table border="1" cellpadding="10" cellspacing="0">
     <thead>

@@ -46,6 +46,11 @@ public class UserService {
         usersMapper.addUser(user);
     }
 
+    public List<User> findByUsernameAndActid(User user) {
+        user.setUsername("%"+user.getUsername()+"%");
+        return usersMapper.findByUsernameAndActid(user);
+    }
+
     @Transactional
     public void delUser(Integer id) {
         usersMapper.delUser(id);
