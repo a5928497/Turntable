@@ -21,6 +21,9 @@ public interface RewardMapper {
     @Select("SELECT id,rewardName,total,surplus,probability FROM rewards WHERE act_id = #{act_id}")
     public List<Reward> findByActid(Integer act_id);
 
+    @Select("SELECT id,rewardName,probability,act_id FROM rewards WHERE act_id = #{act_id}")
+    public List<Reward> getProbabilityByActid(Integer act_id);
+
     @Select("SELECT * from rewards WHERE id = #{id}")
     public Reward findById(Integer id);
 
