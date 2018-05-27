@@ -20,6 +20,9 @@ public interface UsersMapper {
     @Select("SELECT id,username,act_id,draw_times,available_draw_times FROM users WHERE id=#{id}")
     public User findById(Integer id);
 
+    @Select("SELECT username FROM users WHERE id=#{id}")
+    public String findUsernameById(Integer id);
+
     @Update("UPDATE users SET username = #{username},draw_times=#{draw_times},available_draw_times = #{available_draw_times} WHERE id = #{id}")
     public void updateUser(User user);
 

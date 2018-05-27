@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bg</title>
+</head>
+<body>
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>用户名</td>
+        <td>活动名</td>
+        <td>奖品名</td>
+        <td>是否兑换</td>
+        <td>中奖时间</td>
+        <td>兑换时间</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="awardInfo:${awardInfos}">
+        <td th:text="${awardInfo.id}">id</td>
+        <td th:text="${awardInfo.username}">username</td>
+        <td th:text="${awardInfo.act_name}">act_name</td>
+        <td th:text="${awardInfo.reward_name}">reward_name</td>
+        <td th:text="${awardInfo.isCash} ==0?未兑换:已兑换">isCash</td>
+        <td>        </td>
+    </tr>
+    </tbody>
+</table>
+    <!-- delete表单-->
+    <form id="deleteForm" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="act_id" th:value="${act_id}">
+    </form>
+    <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
+    <script>
+        $deleteBTNs = $(".deleteBTN");
+        $deleteForm = $("#deleteForm");
+        $deleteBTNs.click(function () {
+            $deleteForm.attr("action",$(this).attr("del_uri")).submit();
+            return false;
+        });
+    </script>
+</body>
+</html>

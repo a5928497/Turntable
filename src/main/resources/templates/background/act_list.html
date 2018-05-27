@@ -25,9 +25,10 @@
         <td th:text="${act.act_key}">key</td>
         <td>
             <a href="" th:href="@{/rewards/}+${act.id}" >礼品管理</a>
+            <a href="" th:href="@{/awards/}+${act.id}" >客户管理</a>
+            <a href="" th:href="@{/users/}+${act.id}" >中奖情况</a>
             <a href="" th:href="@{/actclose/}+${act.id}" th:if="${act.act_status==1}" >关闭活动</a>
             <a href="" th:href="@{/actopen/}+${act.id}" th:if="${act.act_status==0}">开启活动</a>
-            <a href="" th:href="@{/users/}+${act.id}" >客户管理</a>
         </td>
     </tr>
     </tbody>
