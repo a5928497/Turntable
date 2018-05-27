@@ -16,7 +16,7 @@ public class AwardInof2human {
     private String username;
     private String act_name;
     private String reward_name;
-    private Integer isCash;
+    private Integer is_Cash;
     private Date winning_date;
     private Date cashing_date;
 }

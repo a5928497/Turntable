@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class AwardInfoService {
         List<AwardInof2human> list = new ArrayList<>();
         for (AwardInfo element:list_temp) {
             AwardInof2human awardInof2human = new AwardInof2human();
-            awardInof2human.setId(element.getId()).setIsCash(element.getIsCash())
+            awardInof2human.setId(element.getId()).setIs_Cash(element.getIs_Cash())
                     .setWinning_date(element.getWinning_date()).setCashing_date(element.getCashing_date())
                     .setUsername(usersMapper.findUsernameById(element.getUser_id()))
                     .setAct_name(activityMapper.findById(element.getAct_id()))
@@ -37,5 +38,12 @@ public class AwardInfoService {
             list.add(awardInof2human);
         }
         return  list;
+    }
+
+    public void cashAward(Integer id) {
+
+        AwardInfo awardInfo = awardInfoMapper.findById(id);
+        awardInfo.setIs_Cash(1).setCashing_date(new Date());
+        awardInfoMapper.cashAward(awardInfo);
     }
 }

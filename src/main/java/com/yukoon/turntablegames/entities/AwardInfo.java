@@ -16,7 +16,7 @@ public class AwardInfo {
     private Integer user_id;
     private Integer act_id;
     private Integer reward_id;
-    private Integer isCash;
+    private Integer is_Cash;
     private Date winning_date;
     private Date cashing_date;
 }

@@ -24,24 +24,29 @@
         <td th:text="${awardInfo.username}">username</td>
         <td th:text="${awardInfo.act_name}">act_name</td>
         <td th:text="${awardInfo.reward_name}">reward_name</td>
-        <td th:text="${awardInfo.isCash} ==0?未兑换:已兑换">isCash</td>
-        <td>        </td>
+        <td th:text="未兑换" th:if="${awardInfo.is_Cash == 0}">isCash</td>
+        <td th:text="已兑换" th:if="${awardInfo.is_Cash == 1}">isCash</td>
+        <td th:text="${#dates.format(awardInfo.winning_date, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${awardInfo.cashing_date}!=null?${#dates.format(awardInfo.cashing_date, 'yyyy-MM-dd HH:mm')}:未兑换"></td>
+        <td>
+            <button class="cashingBTN" th:attr="put_uri=@{/award/}+${awardInfo.id}" th:if="${awardInfo.is_Cash == 0}">兑换</button>
+        </td>
     </tr>
     </tbody>
 </table>
-    <!-- delete表单-->
-    <form id="deleteForm" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="act_id" th:value="${act_id}">
-    </form>
-    <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
-    <script>
-        $deleteBTNs = $(".deleteBTN");
-        $deleteForm = $("#deleteForm");
-        $deleteBTNs.click(function () {
-            $deleteForm.attr("action",$(this).attr("del_uri")).submit();
-            return false;
-        });
-    </script>
+<!-- delete表单-->
+<form id="cashingForm" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" name="act_id" th:value="${act_id}">
+</form>
+<script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
+<script>
+    $cashingBTN = $(".cashingBTN");
+    $cashingForm = $("#cashingForm");
+    $cashingBTN.click(function () {
+        $cashingForm.attr("action",$(this).attr("put_uri")).submit();
+        return false;
+    });
+</script>
 </body>
 </html>
