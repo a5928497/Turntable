@@ -40,6 +40,25 @@ public class AwardInfoService {
         return  list;
     }
 
+    public List<AwardInof2human> findAllByUserid(Integer id) {
+        List<AwardInfo> list_temp = awardInfoMapper.findAllByUserid(id);
+        List<AwardInof2human> list = new ArrayList<>();
+        for (AwardInfo element:list_temp) {
+            AwardInof2human awardInof2human = new AwardInof2human();
+            awardInof2human.setId(element.getId()).setIs_Cash(element.getIs_Cash())
+                    .setWinning_date(element.getWinning_date()).setCashing_date(element.getCashing_date())
+                    .setUsername(usersMapper.findUsernameById(element.getUser_id()))
+                    .setAct_name(activityMapper.findById(element.getAct_id()))
+                    .setReward_name(rewardMapper.findRewardnameById(element.getReward_id()));
+            list.add(awardInof2human);
+        }
+        return  list;
+    }
+
+    public Integer findActidByUserid(Integer id) {
+        return usersMapper.findActidById(id);
+    }
+
     public void cashAward(Integer id) {
 
         AwardInfo awardInfo = awardInfoMapper.findById(id);

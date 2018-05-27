@@ -13,6 +13,9 @@ public interface AwardInfoMapper {
     @Select("SELECT * FROM AwardInfo WHERE act_id = #{act_id}")
     public List<AwardInfo> findAllByActid(Integer act_id);
 
+    @Select("SELECT * FROM AwardInfo WHERE user_id = #{user_id}")
+    public List<AwardInfo> findAllByUserid(Integer user_id);
+
     @Select("SELECT * FROM AwardInfo WHERE id=#{id}")
     public AwardInfo findById(Integer id);
 

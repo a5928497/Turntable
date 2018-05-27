@@ -5,7 +5,7 @@
     <title>bg</title>
 </head>
 <body>
-<a th:href="@{/useradd/}+${act_id}">增加客户</a>
+<a th:href="@{/useradd/}+${act_id}"><button>增加客户</button></a>
 <table border="1" cellpadding="10" cellspacing="0">
     <thead>
     <tr>
@@ -25,10 +25,13 @@
         <td>
             <!-- get方式-->
             <a href="" th:href="@{/user/}+${user.id}">
-                <button>Edit</button>
+                <button>编辑</button>
+            </a>
+            <a href="" th:href="@{/award/}+${user.id}">
+                <button>中奖情况</button>
             </a>
             <!-- delete方式-->
-            <button class="deleteBTN" th:attr="del_uri = @{/user/}+${user.id}">Delete</button>
+            <button class="deleteBTN" th:attr="del_uri = @{/user/}+${user.id}">删除</button>
         </td>
     </tr>
     </tbody>
@@ -42,6 +45,8 @@
 <script>
     $deleteBTNs = $(".deleteBTN");
     $deleteForm = $("#deleteForm");
+    $a = $("a");
+    $a.css("text-decoration","none");
     $deleteBTNs.click(function () {
         $deleteForm.attr("action",$(this).attr("del_uri")).submit();
         return false;

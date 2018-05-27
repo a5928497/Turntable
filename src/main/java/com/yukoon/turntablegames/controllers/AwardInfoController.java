@@ -21,13 +21,20 @@ public class AwardInfoController {
     @GetMapping("/awards/{id}")
     public String findAllByActid(@PathVariable("id")Integer id, Map<String,Object> map) {
         map.put("awardInfos",awardInfoService.findAllByActid(id));
-        map.put("act_id",id);
+        map.put("act_id","/awards/"+id);
+        return "background/awardInfo_list";
+    }
+
+    @GetMapping("/award/{id}")
+    public String findAllByUserid(@PathVariable("id")Integer id, Map<String,Object> map) {
+        map.put("awardInfos",awardInfoService.findAllByUserid(id));
+        map.put("act_id","/award/"+awardInfoService.findActidByUserid(id));
         return "background/awardInfo_list";
     }
 
     @PutMapping("/award/{id}")
-    public String cashAward(@PathVariable("id")Integer id,Integer act_id) {
+    public String cashAward(@PathVariable("id")Integer id,String act_id) {
         awardInfoService.cashAward(id);
-        return "redirect:/awards/" + act_id;
+        return "redirect:"+act_id;
     }
 }
