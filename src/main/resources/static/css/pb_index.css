@@ -14,12 +14,14 @@
     top: 30px;
 }
 .drawBTN {
-width: 186px;
-height: 186px;
-position: absolute;
-top: 50%;
-left: 50%;
-margin-left: -94px;
-margin-top: -94px;
-background: url(../images/btn.png) no-repeat;
+    width: 186px;
+    height: 186px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-style: none;
+    outline: none;
+    margin-left: -94px;
+    margin-top: -94px;
+    background: url(../images/btn.png) no-repeat;
 }

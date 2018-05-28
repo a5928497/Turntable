@@ -10,13 +10,18 @@
         <div class="plate">
             <div class="lottery">
             </div>
-            <a class="drawBTN">
+            <button class="drawBTN" th:attr="draw_uri = @{/draw}">
 
-            </a>
+            </button>
         </div>
 
         <p th:text="您共有+${user.draw_times}+次抽奖机会"></p>
         <p th:text="您还剩下+${user.available_draw_times}+次抽奖机会"></p>
+        <form id="drawForm" method="post" modelAttribute="user">
+            <input type="hidden" name="id" th:value="${user.id}">
+            <input type="hidden" name="act_id" th:value="${user.act_id}">
+            <input type="hidden" name="available_draw_times" th:value="${user.available_draw_times}">
+        </form>
         <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
         <script type="text/javascript" th:src="@{/js/jquery.rotate.js}"></script>
         <script type="text/javascript" th:src="@{/js/pb_index.js}"></script>

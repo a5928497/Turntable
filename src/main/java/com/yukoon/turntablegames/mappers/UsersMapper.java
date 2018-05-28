@@ -11,7 +11,7 @@ public interface UsersMapper {
             "#{password},#{role_id},#{act_id},#{draw_times},#{draw_times})")
     public void addUser(User user);
 
-    @Select("SELECT username,password,role_id,act_id,draw_times,available_draw_times FROM users WHERE username = #{username}")
+    @Select("SELECT id,username,password,role_id,act_id,draw_times,available_draw_times FROM users WHERE username = #{username}")
     public User login(User user);
 
     @Select("SELECT id,username,draw_times,available_draw_times FROM users WHERE act_id =#{act_id}")
