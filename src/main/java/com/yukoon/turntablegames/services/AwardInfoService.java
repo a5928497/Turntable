@@ -75,16 +75,23 @@ public class AwardInfoService {
     public Reward addAwardInfo(User user) {
         Reward reward = drawService.getRandomReward(user.getAct_id());
         if (reward != null) {
-            //添加得奖信息
-            AwardInfo awardInfo = new AwardInfo().setUser_id(user.getId()).setAct_id(reward.getAct_id())
-                    .setReward_id(reward.getId()).setIs_Cash(0).setWinning_date(new Date());
-            awardInfoMapper.addAwardInfo(awardInfo);
-            //扣减抽奖次数
-            User user_temp = new User().setId(user.getId()).setAvailable_draw_times(user.getAvailable_draw_times()-1);
-            usersMapper.minusAvailableDrawTimes(user_temp);
-            //扣减奖品
-            Reward reward_temp = new Reward().setId(reward.getId()).setSurplus(reward.getSurplus()-1);
-            rewardMapper.minusSurplus(reward_temp);
+            //判断是否抽到谢谢惠顾
+            if (reward.getRewardName().equals("thanks")){
+                //扣减抽奖次数
+                User user_temp = new User().setId(user.getId()).setAvailable_draw_times(user.getAvailable_draw_times()-1);
+                usersMapper.minusAvailableDrawTimes(user_temp);
+            }else {
+                //添加得奖信息
+                AwardInfo awardInfo = new AwardInfo().setUser_id(user.getId()).setAct_id(reward.getAct_id())
+                        .setReward_id(reward.getId()).setIs_Cash(0).setWinning_date(new Date());
+                awardInfoMapper.addAwardInfo(awardInfo);
+                //扣减抽奖次数
+                User user_temp = new User().setId(user.getId()).setAvailable_draw_times(user.getAvailable_draw_times()-1);
+                usersMapper.minusAvailableDrawTimes(user_temp);
+                //扣减奖品
+                Reward reward_temp = new Reward().setId(reward.getId()).setSurplus(reward.getSurplus()-1);
+                rewardMapper.minusSurplus(reward_temp);
+            }
         }
         return reward;
     }

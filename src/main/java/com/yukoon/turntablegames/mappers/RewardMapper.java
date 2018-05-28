@@ -32,4 +32,7 @@ public interface RewardMapper {
 
     @Select("SELECT rewardName from rewards WHERE id = #{id}")
     public String findRewardnameById(Integer id);
+
+    @Select("select * from rewards WHERE rewardName = 'thanks'")
+    public Reward thanks();
 }

@@ -10,7 +10,7 @@ import java.util.Random;
 
 @Service
 public class DrawService {
-    private final static int MAX_REWARD_NUMBER = 8;
+    private final static int MAX_REWARD_NUMBER = 7;
     @Autowired
     private RewardMapper rewardMapper;
 
@@ -56,9 +56,13 @@ public class DrawService {
     //对randomChoice()得到的reward进行检验保证能返回正确结果
     public Reward getRandomReward(Integer act_id) {
         Reward reward = randomChoice(act_id);
-        while (reward == null || reward.getSurplus() <1) {
-            System.out.println("这个有问题"+reward);
+        while (reward == null ) {
+            System.out.println("抽取发生问题，将重新抽取");
             reward = randomChoice(act_id);
+        }
+        if (reward.getSurplus() <1) {
+            //没有库存，返回谢谢惠顾
+            reward = rewardMapper.thanks();
         }
         return reward;
     }

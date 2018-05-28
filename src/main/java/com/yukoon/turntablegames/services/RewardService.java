@@ -15,13 +15,14 @@ public class RewardService {
     private RewardMapper rewardMapper;
     @Autowired
     private ActivityMapper activityMapper;
+    private final static Integer MAX_REWARD_NUMBER = 7;
 
     @Transactional
     public boolean addReward(Reward reward) {
         boolean flag = false;
         int size = rewardMapper.findByActid(reward.getAct_id()).size();
         boolean isNull = (activityMapper.findById(reward.getAct_id()) == null);
-        if (size <8 && isNull == false) {
+        if (size <MAX_REWARD_NUMBER && isNull == false && reward.getRewardName().equals("thanks") ==false) {
             rewardMapper.addReward(reward);
             flag = true;
         }
