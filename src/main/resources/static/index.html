@@ -9,6 +9,7 @@
         <div id="login_container">
             <label>手机号</label><input type="text" name="username"><br>
             <label>口令</label><input type="text" name="password"><br>
+            <span th:text="${msg!=null}?${msg}"></span>
             <input type="submit">
         </div>
     </form>

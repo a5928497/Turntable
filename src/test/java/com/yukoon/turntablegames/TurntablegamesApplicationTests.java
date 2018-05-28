@@ -1,6 +1,6 @@
 package com.yukoon.turntablegames;
 
-import com.yukoon.turntablegames.entities.AwardInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.yukoon.turntablegames.mappers.UsersMapper;
 import com.yukoon.turntablegames.services.AwardInfoService;
 import com.yukoon.turntablegames.services.DrawService;
@@ -21,8 +21,8 @@ public class TurntablegamesApplicationTests {
 	private UsersMapper usersMapper;
 
 	@Test
-	public void contextLoads() {
-		System.out.println(awardInfoService.addAwardInfo(usersMapper.findById(2)));
+	public void contextLoads() throws JsonProcessingException {
+
 	}
 
 }
