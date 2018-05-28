@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.mappers;
 
 import com.yukoon.turntablegames.entities.AwardInfo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -21,4 +22,7 @@ public interface AwardInfoMapper {
 
     @Update("UPDATE AwardInfo SET is_Cash = 1,cashing_date = #{cashing_date} WHERE id=#{id}")
     public void cashAward(AwardInfo awardInfo);
+
+    @Insert("INSERT INTO AwardInfo(user_id,act_id,reward_id,is_cash,winning_date) VALUES (#{user_id},#{act_id},#{reward_id},#{is_Cash},#{winning_date})")
+    public void addAwardInfo(AwardInfo awardInfo);
 }

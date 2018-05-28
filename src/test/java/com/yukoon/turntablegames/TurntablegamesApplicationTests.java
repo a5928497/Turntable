@@ -1,5 +1,8 @@
 package com.yukoon.turntablegames;
 
+import com.yukoon.turntablegames.entities.AwardInfo;
+import com.yukoon.turntablegames.mappers.UsersMapper;
+import com.yukoon.turntablegames.services.AwardInfoService;
 import com.yukoon.turntablegames.services.DrawService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +15,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TurntablegamesApplicationTests {
 	@Autowired
 	private DrawService drawService;
+	@Autowired
+	private AwardInfoService awardInfoService;
+	@Autowired
+	private UsersMapper usersMapper;
 
 	@Test
 	public void contextLoads() {
-		System.out.println(drawService.randomChoice(2));
+		System.out.println(awardInfoService.addAwardInfo(usersMapper.findById(2)));
 	}
 
 }

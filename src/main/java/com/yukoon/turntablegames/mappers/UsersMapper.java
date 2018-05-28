@@ -32,6 +32,9 @@ public interface UsersMapper {
     @Update("UPDATE users SET username = #{username},draw_times=#{draw_times},available_draw_times = #{available_draw_times} WHERE id = #{id}")
     public void updateUser(User user);
 
+    @Update("UPDATE users SET available_draw_times = #{available_draw_times} WHERE id = #{id}")
+    public void minusAvailableDrawTimes(User user);
+
     @Delete("DELETE FROM users WHERE id = #{id}")
     public void delUser(Integer id);
 

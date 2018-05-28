@@ -2,12 +2,15 @@ package com.yukoon.turntablegames.services;
 
 import com.yukoon.turntablegames.entities.AwardInfo;
 import com.yukoon.turntablegames.entities.AwardInof2human;
+import com.yukoon.turntablegames.entities.Reward;
+import com.yukoon.turntablegames.entities.User;
 import com.yukoon.turntablegames.mappers.ActivityMapper;
 import com.yukoon.turntablegames.mappers.AwardInfoMapper;
 import com.yukoon.turntablegames.mappers.RewardMapper;
 import com.yukoon.turntablegames.mappers.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +26,8 @@ public class AwardInfoService {
     private UsersMapper usersMapper;
     @Autowired
     private ActivityMapper activityMapper;
+    @Autowired
+    private DrawService drawService;
 
 
     public List<AwardInof2human> findAllByActid(Integer id) {
@@ -64,5 +69,23 @@ public class AwardInfoService {
         AwardInfo awardInfo = awardInfoMapper.findById(id);
         awardInfo.setIs_Cash(1).setCashing_date(new Date());
         awardInfoMapper.cashAward(awardInfo);
+    }
+
+    @Transactional
+    public Reward addAwardInfo(User user) {
+        Reward reward = drawService.getRandomReward(user.getAct_id());
+        if (reward != null) {
+            //添加得奖信息
+            AwardInfo awardInfo = new AwardInfo().setUser_id(user.getId()).setAct_id(reward.getAct_id())
+                    .setReward_id(reward.getId()).setIs_Cash(0).setWinning_date(new Date());
+            awardInfoMapper.addAwardInfo(awardInfo);
+            //扣减抽奖次数
+            User user_temp = new User().setId(user.getId()).setAvailable_draw_times(user.getAvailable_draw_times()-1);
+            usersMapper.minusAvailableDrawTimes(user_temp);
+            //扣减奖品
+            Reward reward_temp = new Reward().setId(reward.getId()).setSurplus(reward.getSurplus()-1);
+            rewardMapper.minusSurplus(reward_temp);
+        }
+        return reward;
     }
 }
