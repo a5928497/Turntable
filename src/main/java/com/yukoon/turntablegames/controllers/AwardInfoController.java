@@ -21,7 +21,7 @@ public class AwardInfoController {
     @Autowired
     private RecommenderService recommenderService;
 
-
+    //后台查询同一活动下所有中奖情况
     @GetMapping("/awards/{id}")
     public String findAllByActid(@PathVariable("id")Integer id, Map<String,Object> map) {
         map.put("awardInfos",awardInfoService.findAllByActid(id));
@@ -29,17 +29,19 @@ public class AwardInfoController {
         return "background/awardInfo_list";
     }
 
+    //后台查询某一活动下某一客户中奖情况
     @GetMapping("/award/{id}")
     public String findAllByUserid(@PathVariable("id")Integer id, Map<String,Object> map) {
         map.put("awardInfos",awardInfoService.findAllByUserid(id));
         map.put("act_id","/award/"+awardInfoService.findActidByUserid(id));
         return "background/awardInfo_list";
     }
-    //前台查询获奖情况
+    //前台查询某一活动下某一客户获奖情况
     @GetMapping("pbaward/{id}")
     public String pbFindAllByUserid(@PathVariable("id")Integer id, Map<String,Object> map) {
         map.put("awardInfos",awardInfoService.findAllByUserid(id));
         map.put("act_id",awardInfoService.findActidByUserid(id));
+        map.put("user_id",id);
         return "public/awardInfo_list";
     }
 
@@ -47,17 +49,17 @@ public class AwardInfoController {
     @PutMapping("/award/{id}")
     public String cashAward(@PathVariable("id")Integer id,String act_id) {
         awardInfoService.cashAward(id);
+        //根据act_id中地址跳转到全部中奖情况或具体客户中奖情况
         return "redirect:"+act_id;
     }
 
 //    前台兑换
-    @PutMapping("/pbaward/{id}")
-    public String pbcashAward(@PathVariable("id")Integer id, Recommender recommender) {
-        System.out.println(recommender);
+    @PutMapping("/pbaward/{rid}")
+    public String pbcashAward(@PathVariable("rid")Integer rid, Recommender recommender,Integer user_id, Map<String,Object> map) {
         if(recommenderService.vaildateRecommender(recommender)){
-            awardInfoService.cashAward(id);
-            return "redirect:"+recommender.getAct_id();
+            awardInfoService.cashAward(rid);
+            return "redirect:/pbaward/"+user_id;
         }
-        return null;
+        return "redirect:/pbaward/"+user_id + "?flag=flase";
     }
 }
