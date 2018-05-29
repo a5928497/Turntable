@@ -7,7 +7,7 @@
 </head>
 <body >
         <div id="page_container">
-        <p th:text="您好，+${user.username}"></p>
+        <p th:text="您好，+${session.user.username}"></p>
         <div class="plate">
             <div class="lottery">
             </div>
@@ -16,15 +16,15 @@
             </button>
         </div>
 
-        <p th:text="您共有+${user.draw_times}+次抽奖机会"></p>
+        <p th:text="您共有+${session.user.draw_times}+次抽奖机会"></p>
         <p>
-            <span>您还剩下</span><span class="available_draw_times" th:text="${user.available_draw_times}"></span><span>次抽奖机会</span>
+            <span>您还剩下</span><span class="available_draw_times" th:text="${session.user.available_draw_times}"></span><span>次抽奖机会</span>
         </p>
-        <a th:href="@{pbaward/}+${user.id}">获奖情况</a>
+        <a th:href="@{pbaward/}+${session.user.id}">获奖情况</a>
         <form id="drawForm" method="post" modelAttribute="user" action="/draw">
-            <input type="hidden" name="id" th:value="${user.id}">
-            <input type="hidden" name="act_id" th:value="${user.act_id}">
-            <input type="hidden" class="available_draw_times" name="available_draw_times" th:value="${user.available_draw_times}">
+            <input type="hidden" name="id" th:value="${session.user.id}">
+            <input type="hidden" name="act_id" th:value="${session.user.act_id}">
+            <input type="hidden" class="available_draw_times" name="available_draw_times" th:value="${session.user.available_draw_times}">
         </form>
         </div>
         <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>

@@ -22,6 +22,10 @@ $(function () {
                 console.log(rotation);
             }
         });
-        $(".lottery").animate({rotate: rotation}, 2000);
+        //根据抽奖记录旋转并执行回调提示
+        $(".lottery").animate({rotate: rotation}, 2000,function () {
+            alert(msg);
+            window.location.replace("/ruser");
+        });
     })
 })

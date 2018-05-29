@@ -10,25 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+
 public class UserController {
     @Autowired
     private UserService userService;
-
-
-    @PostMapping("/login")
-    public String login(Map<String,Object> map, User user){
-        User user_temp = userService.login(user);
-        System.out.println(user_temp);
-        if (user_temp != null) {
-            map.put("user",user_temp);
-        }else {
-            return "redirect:/index.html";
-        }
-        if (user_temp.getRole_id() == 2) {
-            return "background/bg_index";
-        }
-        return "public/pb_index";
-    }
 
     @GetMapping("/users/{id}")
     public String getUsers(@PathVariable("id")Integer id,Map<String,Object> map) {
