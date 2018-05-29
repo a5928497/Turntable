@@ -32,7 +32,7 @@ public class LoginController {
             return "redirect:/index.html";
         }
         if (user_temp.getRole_id() == 2) {
-            return "background/bg_index";
+            return "redirect:/acts";
         }
         return "public/pb_index";
     }

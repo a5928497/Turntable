@@ -50,11 +50,10 @@
 </form>
 <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
 <script>
-    $deleteBTNs = $(".deleteBTN");
+    $deleteBTN = $(".deleteBTN");
     $deleteForm = $("#deleteForm");
-    $a = $("a");
-    $a.css("text-decoration","none");
-    $deleteBTNs.click(function () {
+    $deleteBTN.click(function () {
+
         $deleteForm.attr("action",$(this).attr("del_uri")).submit();
         return false;
     });

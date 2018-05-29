@@ -6,16 +6,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Console</title>
+    <title>Reward</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet">
 
     <!-- FooTable -->
-    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link th:href="@{/css/plugins/footable/footable.core.css}" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 
 </head>
 
@@ -33,30 +33,13 @@
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-
+            <a th:href="@{/rewardToAdd/}+${act_id}"><button class="btn btn-primary">增加礼品</button></a>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>活动管理</h5>
+                            <h5>礼品管理</h5>
 
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
                         </div>
                         <div class="ibox-content">
 
@@ -64,21 +47,26 @@
                                 <thead>
                                 <tr>
                                     <th data-hide="all">ID</th>
-                                    <th data-hide="all">活动名</th>
-                                    <th data-hide="all">状态</th>
-                                    <th data-hide="all">口令</th>
+                                    <th data-hide="all">礼品名</th>
+                                    <th data-hide="all">总数</th>
+                                    <th data-hide="all">剩余数</th>
+                                    <th data-hide="all">中奖概率</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="act:${acts}">
-                                    <td th:text="${act.id}">ID</td>
-                                    <td th:text="${act.activityName}">activityName</td>
-                                    <td th:text="未启用" th:if="${act.act_status==0}">status</td>
-                                    <td th:text="进行中" th:if="${act.act_status==1}">status</td>
-                                    <td th:text="已结束" th:if="${act.act_status==2}">status</td>
-                                    <td th:text="${act.act_key}">key</td>
-                                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                <tr th:each="reward:${rewards}">
+                                    <td th:text="${reward.id}">id</td>
+                                    <td th:text="${reward.rewardName}">rewardName</td>
+                                    <td th:text="${reward.total}">total</td>
+                                    <td th:text="${reward.surplus}">surplus</td>
+                                    <td th:text="${reward.probability}">probability</td>
+                                    <td>
+                                        <a th:href="@{/reward/}+${reward.id}"><button class="btn btn-sm btn-warning">编辑</button></a>
+
+                                        <a th:attr="del_uri = @{/reward/}+${reward.id}"><button class="btn btn-sm btn-danger">关闭</button></a>
+                                    </td>
+
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -96,15 +84,6 @@
             </div>
 
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
-        </div>
-
         </div>
         </div>
 
@@ -126,10 +105,7 @@
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function() {
-
             $('.footable').footable();
-            $('.footable2').footable();
-
         });
 
     </script>
