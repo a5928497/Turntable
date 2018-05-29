@@ -20,7 +20,7 @@ public class UserController {
         List<User> list = userService.findAllByActID(id);
         map.put("users",list);
         map.put("act_id",id);
-        return "background/user_list";
+        return "commons/user_list";
     }
 
     @PostMapping("/finduser")

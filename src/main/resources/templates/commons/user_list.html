@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Reward</title>
+    <title>Users</title>
 
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet">
@@ -33,12 +33,19 @@
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/rewardToAdd/}+${act_id}"><button class="btn btn-primary">增加礼品</button></a>
+            <form action="/finduser" method="post" modelAttribut="user">
+                <label>客户名</label>
+                <input type="text" name="username">
+                <input type="hidden" name="act_id" th:value="${act_id}">
+                <input type="submit" value="搜索">
+            </form>
+            <a th:href="@{/users/}+${act_id}"><button class="btn btn-info">全部</button></a>
+            <a th:href="@{/useradd/}+${act_id}"><button class="btn btn-primary">添加客户</button></a>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>礼品管理</h5>
+                            <h5>客户管理</h5>
 
                         </div>
                         <div class="ibox-content">
@@ -47,24 +54,22 @@
                                 <thead>
                                 <tr>
                                     <th data-hide="all">ID</th>
-                                    <th data-hide="all">礼品名</th>
-                                    <th data-hide="all">总数</th>
-                                    <th data-hide="all">剩余数</th>
-                                    <th data-hide="all">中奖概率</th>
+                                    <th data-hide="all">手机号</th>
+                                    <th data-hide="all">总次数</th>
+                                    <th data-hide="all">剩余次数</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="reward:${rewards}">
-                                    <td th:text="${reward.id}">id</td>
-                                    <td th:text="${reward.rewardName}">rewardName</td>
-                                    <td th:text="${reward.total}">total</td>
-                                    <td th:text="${reward.surplus}">surplus</td>
-                                    <td th:text="${reward.probability}">probability</td>
+                                <tr th:each="user:${users}">
+                                    <td th:text="${user.id}">id</td>
+                                    <td th:text="${user.username}">username</td>
+                                    <td th:text="${user.draw_times}">draw_times</td>
+                                    <td th:text="${user.available_draw_times}">available_draw_times</td>
                                     <td>
-                                        <a th:href="@{/reward/}+${reward.id}"><button class="btn btn-sm btn-warning">编辑</button></a>
-
-                                        <a th:attr="del_uri = @{/reward/}+${reward.id}"><button class="btn btn-sm btn-danger">关闭</button></a>
+                                        <a th:href="@{/user/}+${user.id}"><button class="btn btn-sm btn-warning">编辑</button></a>
+                                        <a th:href="@{/award/}+${user.id}"><button class="btn btn-sm btn-info">中奖情况</button></a>
+                                        <button  th:attr="del_uri = @{/user/}+${user.id}" class="btn btn-sm btn-danger deleteBTN">删除</button>
                                     </td>
 
                                 </tr>
@@ -86,28 +91,22 @@
         </div>
         </div>
         </div>
-
+    <form id="deleteForm" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="act_id" th:value="${act_id}">
+    </form>
 
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- FooTable -->
-    <script src="js/plugins/footable/footable.all.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
-    <!-- Page-Level Scripts -->
+    <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script>
-        $(document).ready(function() {
-            $('.footable').footable();
+        $deleteBTNs = $(".deleteBTN")
+        $deleteForm = $("#deleteForm");
+        $deleteBTNs.click(function () {
+            $deleteForm.attr("action",$(this).attr("del_uri")).submit();
+            return false;
         });
-
     </script>
 
 </body>
