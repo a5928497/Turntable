@@ -10,6 +10,7 @@ import java.util.Random;
 
 @Service
 public class DrawService {
+    //不含谢谢惠顾的最大礼品限值
     private final static int MAX_REWARD_NUMBER = 7;
     @Autowired
     private RewardMapper rewardMapper;
@@ -22,22 +23,28 @@ public class DrawService {
 
         if (list.size() == MAX_REWARD_NUMBER) {
             int range = 0;
+            int rotation = 0;
             for (Reward element:list) {
                 int temp = (int)(element.getProbability()*100);
                 range = range + temp;
                 System.out.println(range);
                 if (i < range) {
+                    element.setRotation((rotation*45));
+                    element.setListSize(MAX_REWARD_NUMBER);
+                    System.out.println("full:"+element);
                     return  element;
                 }
+                rotation++;
             }
         }else {
             int range = 0;
+            int rotation = 0;
             for (Reward element:list) {
                 int temp = (int) (element.getProbability() * 100);
                 range = range + temp;
             }
             while (i>=range){
-                i = random.nextInt(100);
+                i = random.nextInt(range);
                 System.out.println("new i:" + i);
             }
             range = 0;
@@ -46,8 +53,13 @@ public class DrawService {
                 range = range + temp;
                 System.out.println(range);
                 if (i < range) {
+                    int angel = 360/(list.size()+1);
+                    element.setListSize(list.size());
+                    element.setRotation((rotation*angel));
+                    System.out.println("not full"+element);
                     return  element;
                 }
+                rotation++;
             }
         }
         return null;
@@ -62,7 +74,11 @@ public class DrawService {
         }
         if (reward.getSurplus() <1) {
             //没有库存，返回谢谢惠顾
+            int size = reward.getListSize()+1;
+            int rotation = 360 - (360/size);
             reward = rewardMapper.thanks();
+            reward.setRotation(rotation);
+            System.out.println(reward);
         }
         return reward;
     }

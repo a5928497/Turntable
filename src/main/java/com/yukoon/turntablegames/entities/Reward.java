@@ -18,4 +18,7 @@ public class Reward {
     private Integer surplus;
     private float probability;
     private Integer act_id;
+    //旋转角度
+    private Integer rotation;
+    private Integer listSize;
 }
