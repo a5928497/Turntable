@@ -18,13 +18,13 @@
 
         <p th:text="您共有+${session.user.draw_times}+次抽奖机会"></p>
         <p>
-            <span>您还剩下</span><span class="available_draw_times" th:text="${session.user.available_draw_times}"></span><span>次抽奖机会</span>
+            <span>您还剩下</span><span id="available_draw_times_msg" th:text="${session.user.available_draw_times}"></span><span>次抽奖机会</span>
         </p>
         <a th:href="@{pbaward/}+${session.user.id}">获奖情况</a>
         <form id="drawForm" method="post" modelAttribute="user" action="/draw">
-            <input type="hidden" name="id" th:value="${session.user.id}">
-            <input type="hidden" name="act_id" th:value="${session.user.act_id}">
-            <input type="hidden" class="available_draw_times" name="available_draw_times" th:value="${session.user.available_draw_times}">
+            <input type="hidden" id="user_id" name="id" th:value="${session.user.id}">
+            <input type="hidden" id="act_id" name="act_id" th:value="${session.user.act_id}">
+            <input type="hidden" id="available_draw_times" name="available_draw_times" th:value="${session.user.available_draw_times}">
         </form>
         </div>
         <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>

@@ -50,6 +50,7 @@ public class UserService {
         return usersMapper.findByUsernameAndActid(user);
     }
 
+
     @Transactional
     public void delUser(Integer id) {
         usersMapper.delUser(id);

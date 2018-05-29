@@ -28,7 +28,7 @@
 <form id="cashingForm" method="post" modelAttribute="recommender">
     <input type="hidden" name="_method" value="put">
     <input type="hidden" id="recommender_id" name="recommender_id">
-    <input type="hidden" name="user_id" th:value="${user_id}">
+    <input type="hidden" id="user_id" name="user_id" th:value="${user_id}">
     <input type="hidden" name="act_id" th:value="${act_id}">
 </form>
 <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>

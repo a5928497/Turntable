@@ -56,6 +56,7 @@ public class UserController {
         return "background/user_input";
     }
 
+
     @PostMapping("/user")
     public String addUser(User user) {
         System.out.println(user);

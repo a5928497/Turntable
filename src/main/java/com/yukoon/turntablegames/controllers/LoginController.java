@@ -5,6 +5,7 @@ import com.yukoon.turntablegames.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -33,9 +34,10 @@ public class LoginController {
         return "public/pb_index";
     }
 
-    @GetMapping("/ruser")
-    public String reflash(Map<String,Object> map, User user, ServerProperties.Session session) {
-        System.out.println(user);
+    @GetMapping("/reflash")
+    public String reflash(ModelMap modelMap, User user) {
+        //更新session中user信息
+        modelMap.addAttribute("user",userService.findById(user.getId()));
         return "public/pb_index";
     }
 }
