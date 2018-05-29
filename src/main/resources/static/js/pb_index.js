@@ -6,6 +6,7 @@ $(function () {
     // $lottery.css("background","url(../images/lottery.png)");
     $drawBTN.click(function () {
         var msg;
+        var rotation;
         $.ajax({
             type: "POST",   //提交的方法
             url:"/draw", //提交的地址
@@ -17,9 +18,10 @@ $(function () {
             },
             success: function (data) {
                 msg = "恭喜您抽到了" + data.rewardName;
-
+                rotation = parseInt(data.rotation)+360;
+                console.log(rotation);
             }
         });
-        $(".lottery").animate({rotate: '360'+180}, 2000);
+        $(".lottery").animate({rotate: rotation}, 2000);
     })
 })
