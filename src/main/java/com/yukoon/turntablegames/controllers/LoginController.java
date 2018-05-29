@@ -20,12 +20,15 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping("/login")
-    public String login(Map<String,Object> map, User user){
+    public String login(Map<String,Object> map, User user,String flag){
         User user_temp = userService.login(user);
         System.out.println(user_temp);
         if (user_temp != null) {
             map.put("user",user_temp);
         }else {
+            if (flag.equals("bg")){
+                return "redirect:/loginpage/login.html";
+            }
             return "redirect:/index.html";
         }
         if (user_temp.getRole_id() == 2) {
