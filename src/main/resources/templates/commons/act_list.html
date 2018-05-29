@@ -78,14 +78,7 @@
                                     <td th:text="进行中" th:if="${act.act_status==1}">status</td>
                                     <td th:text="已结束" th:if="${act.act_status==2}">status</td>
                                     <td th:text="${act.act_key}">key</td>
-                                    <td>
-                                        <a th:href="@{/rewards/}+${act.id}"><button class="btn btn-sm btn-success">礼品</button></i></a>
-                                        <a th:href="@{/awards/}+${act.id}"><button class="btn btn-sm btn-info">中奖者</button></i></a>
-                                        <a th:href="@{/users/}+${act.id}"><button class="btn btn-sm btn-warning">客户</button></i></a>
-                                        <a th:href="@{/actopen/}+${act.id}" th:if="${act.act_status==0}"><button class="btn btn-sm btn-primary">开启</button></i></a>
-                                        <a th:href="@{/actclose/}+${act.id}" th:if="${act.act_status==1}"><button class="btn btn-sm btn-danger">关闭</button></i></a>
-                                    </td>
-
+                                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
