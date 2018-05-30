@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Activity</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet">
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/plugins/jasny/jasny-bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/plugins/codemirror/codemirror.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>编辑</h2>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>活动编辑</h5>
+                </div>
+                <div class="ibox-content">
+                    <form action="/picupload" enctype="multipart/form-data">
+                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                            <div class="form-control fileinput" data-trigger="fileinput">
+                                <span class="fileinput-filename"></span>
+                            </div>
+                            <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Select file</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="pic"/>
+                                </span>
+                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                        <button class="btn btn-primary" type="submit">上传</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    <!-- Mainly scripts -->
+    <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- Jasny -->
+    <script th:src="@{/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+<script>
+    $backBTN = $(".backBTN");
+    $fileinput = $(".fileinput");
+    $fileinput.css("width",300);
+    $backBTN.click(function () {
+        var uri = $backBTN.attr("back_uri");
+        window.location.replace(uri);
+        return false;
+    })
+</script>
+</body>
+
+</html>

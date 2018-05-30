@@ -6,6 +6,7 @@ import com.yukoon.turntablegames.services.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -59,5 +60,10 @@ public class RewardController {
         System.out.println(reward);
         rewardService.addReward(reward);
         return "redirect:/rewards/"+reward.getAct_id();
+    }
+    @ResponseBody
+    @GetMapping("/picupload")
+    public boolean upload(@RequestParam("pic")MultipartFile pic){
+        return pic.isEmpty();
     }
 }
