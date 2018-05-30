@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,5 +14,5 @@ public class UserExcel {
     private String headTextName; //列头（标题）名
     private String propertyName; //对应字段名
     private Integer cols; //合并单元格数
-//    private XSSFCellStyle cellStyle;
+    private XSSFCellStyle cellStyle;
 }
