@@ -34,4 +34,7 @@ public interface ActivityMapper {
 
     @Select("SELECT act_key FROM activities WHERE id = #{act_id}")
     public String getKeyByActId(Integer act_id);
+
+    @Select("SELECT act_status FROM activities WHERE id= #{id}")
+    public Integer getStatusById(Integer id);
 }

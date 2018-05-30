@@ -46,4 +46,8 @@ public class ActivityService {
     public List<Activity> findAll() {
         return activityMapper.findAll();
     }
+
+    public Integer getStatusById(Integer id) {
+        return activityMapper.getStatusById(id);
+    }
 }

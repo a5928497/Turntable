@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.controllers;
 
 import com.yukoon.turntablegames.entities.Reward;
+import com.yukoon.turntablegames.services.ActivityService;
 import com.yukoon.turntablegames.services.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import java.util.Map;
 public class RewardController {
     @Autowired
     RewardService rewardService;
+    @Autowired
+    ActivityService activityService;
 
     @GetMapping("/rewards/{id}")
     public String actRewards(@PathVariable("id") Integer id, Map<String,Object> map) {
@@ -20,6 +23,7 @@ public class RewardController {
         System.out.println(list);
         map.put("rewards",list);
         map.put("act_id",id);
+        map.put("act_status",activityService.getStatusById(id));
         return "background/reward_list";
     }
 

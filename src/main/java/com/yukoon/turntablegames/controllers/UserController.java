@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.controllers;
 
 import com.yukoon.turntablegames.entities.User;
+import com.yukoon.turntablegames.services.ActivityService;
 import com.yukoon.turntablegames.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,15 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ActivityService activityService;
 
     @GetMapping("/users/{id}")
     public String getUsers(@PathVariable("id")Integer id,Map<String,Object> map) {
         List<User> list = userService.findAllByActID(id);
         map.put("users",list);
         map.put("act_id",id);
+        map.put("act_status",activityService.getStatusById(id));
         return "background/user_list";
     }
 
