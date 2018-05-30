@@ -6,7 +6,15 @@ spring:
     username: root
     password: 123456
     dbcp2:
-          min-idle: 5         #最小连接数
-          initial-size: 5    #初始化连接数
-          max-total: 10      #最大连接数
-          max-wait-millis: 200  #等待连接最长的超时时间
+          #最小连接数
+          min-idle: 5
+          #初始化连接数
+          initial-size: 5
+          #最大连接数
+          max-total: 10
+          #等待连接最长的超时时间
+          max-wait-millis: 200
+  http:
+    multipart:
+      #上传文件大小限制
+      max-file-size: 1MB

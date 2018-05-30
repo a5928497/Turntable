@@ -7,6 +7,7 @@ import com.yukoon.turntablegames.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -64,24 +65,28 @@ public class RewardController {
         return "redirect:/rewards/"+reward.getAct_id();
     }
 
+    //前往文件上传
     @GetMapping("/touploadimg/{act_id}")
     public String toUpload(@PathVariable("act_id") Integer act_id, Map<String,Object> map) {
         map.put("act_id",act_id);
         return "background/reward_picture_upload";
     }
 
+    //文件上传
     @PostMapping("/imgupload")
-    public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request,Integer act_id, Map<String,Object> map){
+    public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
+            , Integer act_id, ModelMap modelMap){
         String filePath = request.getSession().getServletContext().getRealPath("images/");
-        String fileName = "lottery"+act_id;
-        map.put("act_id",act_id);
+        String fileName = pic.getOriginalFilename();
+        //重命名文件
+        fileName = "lottery"+act_id+".jpg";
         try {
             FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
         }catch (Exception e) {
-            map.put("msg","图片上传出错，请重新上传!");
-            return "background/reward_picture_upload";
+            modelMap.addAttribute("uploadMsg","图片上传出错，请重新上传!");
+            return "redirect:/touploadimg/"+act_id;
         }
-        map.put("msg","图片上传成功!");
-        return "background/reward_picture_upload";
+        modelMap.addAttribute("uploadMsg","图片上传成功!");
+        return "redirect:/touploadimg/"+act_id;
     }
 }

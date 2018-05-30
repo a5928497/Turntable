@@ -45,6 +45,7 @@
                     <h5>图片上传</h5>
                 </div>
                 <div class="ibox-content">
+                    <img src="#" id="lottery">
                     <form action="/imgupload" enctype="multipart/form-data" method="post">
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
@@ -54,7 +55,7 @@
                                     <span class="fileinput-new">Select file</span>
                                     <span class="fileinput-exists">Change</span>
                                     <input type="file" name="pic"/>
-                                    <input type="hidden" name="act_id" th:value="${act_id}">
+                                    <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
                                 </span>
                             <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                         </div>
@@ -64,6 +65,7 @@
                         </div>
                     </form>
                     <span id="msg" th:text="${msg}" th:if="${msg!=null}"></span>
+                    <span  th:src="${contextPath}" ></span>
                 </div>
             </div>
         </div>
@@ -84,6 +86,15 @@
         window.location.replace(uri);
         return false;
     })
+</script>
+<script>
+    var curWwwPath=window.document.location.href;
+    var pathName=window.document.location.pathname;
+    var pos=curWwwPath.indexOf(pathName);
+    var localhostPaht=curWwwPath.substring(0,pos);
+    var act_id = $("#act_id").val();
+    var img_url  = localhostPaht +"/images/lottery"+act_id + ".jpg";
+    $("#lottery").attr("src",img_url);
 </script>
 </body>
 
