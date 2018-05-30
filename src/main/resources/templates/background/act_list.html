@@ -34,6 +34,7 @@
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <a th:href="@{/act}"><button class="btn btn-primary">新建活动</button></a>
+            <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
@@ -97,8 +98,8 @@
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 
     <script>
-
-
+        $border = $(".border");
+        $border.css("height",10);
     </script>
 
 </body>

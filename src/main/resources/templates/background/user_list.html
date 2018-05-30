@@ -33,14 +33,24 @@
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
+            <div>
             <form action="/finduser" method="post" modelAttribut="user">
-                <label>客户名</label>
-                <input type="text" name="username">
-                <input type="hidden" name="act_id" th:value="${act_id}">
-                <input type="submit" value="搜索">
+                <div class="input-group"id="search_group">
+                    <input type="text" class="form-control input-sm" name="username" placeholder="手机号">
+                    <input type="hidden" name="act_id" th:value="${act_id}">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            搜索
+                        </button>
+                    </div>
+                </div>
             </form>
-            <a th:href="@{/users/}+${act_id}"><button class="btn btn-info">全部</button></a>
-            <a th:href="@{/useradd/}+${act_id}"><button class="btn btn-primary">添加客户</button></a>
+                <div class="border"></div>
+            <a th:href="@{/users/}+${act_id}"><button class="btn btn-sm btn-info">全部</button></a>
+            <a th:href="@{/useradd/}+${act_id}"><button class="btn btn-sm btn-primary">添加客户</button></a>
+            <a th:href="@{/acts}"><button class="btn btn-sm btn-info">返回首页</button></a>
+                <div class="border"></div>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
@@ -103,6 +113,10 @@
     <script>
         $deleteBTNs = $(".deleteBTN")
         $deleteForm = $("#deleteForm");
+        $search_group = $("#search_group");
+        $border = $(".border");
+        $search_group.css("width",300);
+        $border.css("height",10);
         $deleteBTNs.click(function () {
             $deleteForm.attr("action",$(this).attr("del_uri")).submit();
             return false;
