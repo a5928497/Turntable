@@ -3,11 +3,14 @@ package com.yukoon.turntablegames.controllers;
 import com.yukoon.turntablegames.entities.Reward;
 import com.yukoon.turntablegames.services.ActivityService;
 import com.yukoon.turntablegames.services.RewardService;
+import com.yukoon.turntablegames.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +24,6 @@ public class RewardController {
     @GetMapping("/rewards/{id}")
     public String actRewards(@PathVariable("id") Integer id, Map<String,Object> map) {
         List<Reward> list = rewardService.findByActid(id);
-        System.out.println(list);
         map.put("rewards",list);
         map.put("act_id",id);
         map.put("act_status",activityService.getStatusById(id));
@@ -61,9 +63,25 @@ public class RewardController {
         rewardService.addReward(reward);
         return "redirect:/rewards/"+reward.getAct_id();
     }
-    @ResponseBody
-    @GetMapping("/picupload")
-    public boolean upload(@RequestParam("pic")MultipartFile pic){
-        return pic.isEmpty();
+
+    @GetMapping("/touploadimg/{act_id}")
+    public String toUpload(@PathVariable("act_id") Integer act_id, Map<String,Object> map) {
+        map.put("act_id",act_id);
+        return "background/reward_picture_upload";
+    }
+
+    @PostMapping("/imgupload")
+    public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request,Integer act_id, Map<String,Object> map){
+        String filePath = request.getSession().getServletContext().getRealPath("images/");
+        String fileName = "lottery"+act_id;
+        map.put("act_id",act_id);
+        try {
+            FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
+        }catch (Exception e) {
+            map.put("msg","图片上传出错，请重新上传!");
+            return "background/reward_picture_upload";
+        }
+        map.put("msg","图片上传成功!");
+        return "background/reward_picture_upload";
     }
 }

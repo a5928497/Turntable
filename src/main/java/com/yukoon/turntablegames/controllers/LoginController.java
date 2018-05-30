@@ -22,7 +22,6 @@ public class LoginController {
     @PostMapping("/login")
     public String login(Map<String,Object> map, User user,String flag){
         User user_temp = userService.login(user);
-        System.out.println(user_temp);
         if (user_temp != null) {
             map.put("user",user_temp);
         }else {
