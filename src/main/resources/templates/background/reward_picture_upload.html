@@ -94,8 +94,11 @@
     var localhostPaht=curWwwPath.substring(0,pos);
     var act_id = $("#act_id").val();
     var img_url  = localhostPaht +"/images/lottery"+act_id + ".jpg";
-    $("#lottery").attr("src",img_url);
+    $("#lottery").attr("src",img_url).one("error",function (e) {
+        $(this).remove();
+    });
 </script>
+
 </body>
 
 </html>
