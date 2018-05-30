@@ -2,10 +2,17 @@ $(function () {
     $drawBTN = $(".drawBTN");
     $lottery = $(".lottery");
     $drawForm = $("#drawForm");
+    $act_id =$("#act_id");
     $available_draw_times =$(".available_draw_times");
     $user_id = $("#user_id");
-    $act_id =$("#act_id");
-    // $lottery.css("background","url(../images/lottery.png)");
+    var curWwwPath=window.document.location.href;
+    var pathName=window.document.location.pathname;
+    var pos=curWwwPath.indexOf(pathName);
+    var localhostPaht=curWwwPath.substring(0,pos);
+    var act_id = $act_id.val();
+    var img_url  = localhostPaht +"/images/lottery"+act_id + ".jpg";
+
+    $lottery.css("background","url("+img_url+")");
     $drawBTN.click(function () {
         var msg;
         var rotation;
