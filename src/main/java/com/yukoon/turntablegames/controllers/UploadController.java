@@ -66,7 +66,7 @@ public class UploadController {
 
     //Excel上传
     @PostMapping("/excelupload")
-    public String uploadExcel(@RequestParam("excel")MultipartFile excel,Integer act_id,HttpServletRequest request) {
+    public String uploadExcel(@RequestParam("excel")MultipartFile excel,Integer act_id) {
         try {
             InputStream in = excel.getInputStream();
             excelUploadService.importUserExcel(in,excel,act_id);
