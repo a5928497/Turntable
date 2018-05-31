@@ -101,6 +101,12 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>inspinia</artifactId>
+			<version>2.6.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
