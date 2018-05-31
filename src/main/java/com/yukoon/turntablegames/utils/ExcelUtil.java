@@ -31,7 +31,7 @@ public class ExcelUtil {
     /**
      * Excel导入
      */
-    public static  List<List<Object>> getBankListByExcel(InputStream in, String fileName) throws Exception{
+    public static  List<List<Object>> getUserstByExcel(InputStream in, String fileName) throws Exception{
         List<List<Object>> list = null;
         //创建Excel工作薄
         Workbook work = getWorkbook(in,fileName);

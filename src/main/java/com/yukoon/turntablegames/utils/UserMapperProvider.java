@@ -20,7 +20,8 @@ public class UserMapperProvider {
                 "#'{'list[{0}].act_id'}',#'{'list[{0}].draw_times'}',#'{'list[{0}].available_draw_times'}'");
         for (int i = 0;i< users.size();i++) {
             sb.append("(");
-            sb.append(mf.format(new Object[]{i}));
+            //这里如果直接用数字，超过1000会格式化变成1,000，但是String类型就没问题
+            sb.append(mf.format(new Object[]{String.valueOf(i)}));
             sb.append(")");
 
             if (i < users.size() - 1) {
