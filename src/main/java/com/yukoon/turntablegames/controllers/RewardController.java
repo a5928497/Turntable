@@ -65,36 +65,5 @@ public class RewardController {
         return "redirect:/rewards/"+reward.getAct_id();
     }
 
-    //前往文件上传
-    @GetMapping("/touploadimg/{act_id}")
-    public String toUpload(@PathVariable("act_id") Integer act_id, Map<String,Object> map,String uploadMsg) {
-        if (uploadMsg !=null) {
-            System.out.println(uploadMsg);
-            map.put("uploadMsg",uploadMsg);
-        }
-        map.put("act_id",act_id);
-        return "background/reward_picture_upload";
-    }
 
-    //文件上传
-    @PostMapping("/imgupload")
-    public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
-            , Integer act_id, ModelMap modelMap){
-        String filePath = request.getSession().getServletContext().getRealPath("images/");
-        String fileName = pic.getOriginalFilename();
-        String uploadMsg = "图片上传成功!";
-        if (!FileUtil.isImg(fileName)){
-            uploadMsg = "图片上传出现错误,请重新上传!";
-            return "redirect:/touploadimg/"+act_id+"?uploadMsg="+uploadMsg;
-        }
-        //重命名文件
-        fileName = "lottery"+act_id+".jpg";
-        try {
-            FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
-        }catch (Exception e) {
-            uploadMsg = "图片上传出现错误,请重新上传!";
-            return "redirect:/touploadimg/"+act_id+"?uploadMsg="+uploadMsg;
-        }
-        return "redirect:/touploadimg/"+act_id+"?uploadMsg="+uploadMsg;
-    }
 }

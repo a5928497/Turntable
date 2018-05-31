@@ -15,4 +15,15 @@ public class UserExcel {
     private String propertyName; //对应字段名
     private Integer cols; //合并单元格数
     private XSSFCellStyle cellStyle;
+
+    public UserExcel(String headTextName, String propertyName){
+        this.headTextName = headTextName;
+        this.propertyName = propertyName;
+    }
+    public UserExcel(String headTextName, String propertyName, Integer cols) {
+        super();
+        this.headTextName = headTextName;
+        this.propertyName = propertyName;
+        this.cols = cols;
+    }
 }

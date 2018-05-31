@@ -101,11 +101,10 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>inspinia</artifactId>
-			<version>2.6.5</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>4.0.3</version>
 		</dependency>
 	</dependencies>
 
