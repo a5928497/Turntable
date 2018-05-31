@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.mappers;
 
 import com.yukoon.turntablegames.entities.User;
+import com.yukoon.turntablegames.utils.UserMapperProvider;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -38,4 +39,7 @@ public interface UsersMapper {
     @Delete("DELETE FROM users WHERE id = #{id}")
     public void delUser(Integer id);
 
+    //批量插入
+    @InsertProvider(type = UserMapperProvider.class,method = "insertAll")
+    public void insertAll(@Param("list")List<User> users);
 }
