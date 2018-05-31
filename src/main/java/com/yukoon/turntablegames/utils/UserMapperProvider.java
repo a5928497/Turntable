@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.utils;
 
 import com.yukoon.turntablegames.entities.User;
+import com.yukoon.turntablegames.mappers.UsersMapper;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ import java.util.Map;
 
 public class UserMapperProvider {
 
-    public static String insertAll(Map map) {
-        List<User> users = (List<User>) map.get("users");
+
+    public String insertAll(Map map) {
+        List<User> users = (List<User>) map.get("list");
         StringBuffer sb = new StringBuffer();
         sb.append("INSERT INTO users (username,password,role_id,act_id,draw_times,available_draw_times) VALUES");
         MessageFormat mf = new MessageFormat("#'{'list[{0}].username'}',#'{'list[{0}].password'}',#'{'list[{0}].role_id'}'," +
@@ -36,6 +38,6 @@ public class UserMapperProvider {
         list.add(u2);
         Map<String,Object> map = new HashMap<>();
         map.put("users",list);
-        System.out.println(insertAll(map));
+        System.out.println(new UserMapperProvider().insertAll(map));
     }
 }
