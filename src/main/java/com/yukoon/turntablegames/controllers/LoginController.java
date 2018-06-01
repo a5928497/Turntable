@@ -30,7 +30,7 @@ public class LoginController {
             map.put("user",user_temp);
         }else {
             //若从后台登录，则回后台登录界面
-            if (flag.equals("bg")){
+            if ("bg".equals(flag)){
                 return "redirect:/loginpage/login.html";
             }
             //前台登录则返回前台登录界面

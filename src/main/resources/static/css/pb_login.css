@@ -1,0 +1,31 @@
+#main_container
+{
+    background: url("../images/pb_login.jpg");
+    background-size: 100% 100%;
+    min-width: 320px;
+    min-height: 485px;
+}
+
+input {
+    BACKGROUND-COLOR: transparent;
+    BORDER-BOTTOM:transparent;
+    BORDER-LEFT: transparent;
+    BORDER-RIGHT: transparent;
+    BORDER-TOP: transparent;
+    COLOR: black;
+    border-color: #ffffff #ffffff #ffffff #ffffff; font-size: 9pt
+}
+
+#submitBTN {
+    BACKGROUND-COLOR: transparent;
+    BORDER-BOTTOM:transparent;
+    BORDER-LEFT: transparent;
+    BORDER-RIGHT: transparent;
+    BORDER-TOP: transparent;
+    COLOR: black;
+    border-color: #ffffff #ffffff #ffffff #ffffff; font-size: 9pt
+}
+input:focus{
+    outline: none;
+    background-color:transparent;
+}
