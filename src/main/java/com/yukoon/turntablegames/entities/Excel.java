@@ -10,17 +10,17 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)
-public class UserExcel {
+public class Excel {
     private String headTextName; //列头（标题）名
     private String propertyName; //对应字段名
     private Integer cols; //合并单元格数
     private XSSFCellStyle cellStyle;
 
-    public UserExcel(String headTextName, String propertyName){
+    public Excel(String headTextName, String propertyName){
         this.headTextName = headTextName;
         this.propertyName = propertyName;
     }
-    public UserExcel(String headTextName, String propertyName, Integer cols) {
+    public Excel(String headTextName, String propertyName, Integer cols) {
         super();
         this.headTextName = headTextName;
         this.propertyName = propertyName;

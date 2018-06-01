@@ -1,6 +1,6 @@
 package com.yukoon.turntablegames.utils;
 
-import com.yukoon.turntablegames.entities.UserExcel;
+import com.yukoon.turntablegames.entities.Excel;
 import org.apache.el.parser.ParseException;
 import org.apache.http.client.utils.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -119,7 +119,7 @@ public class ExcelUtil {
      * @param objs   excel标题列以及对应model字段名
      * @param map  标题列行数以及cell字体样式
      */
-    public static XSSFWorkbook createExcelFile(Class clazz, List objs, Map<Integer, List<UserExcel>> map, String sheetName) throws
+    public static XSSFWorkbook createExcelFile(Class clazz, List objs, Map<Integer, List<Excel>> map, String sheetName) throws
             IllegalArgumentException,IllegalAccessException,InvocationTargetException,
             ClassNotFoundException, IntrospectionException, ParseException {
         // 创建新的Excel工作簿
@@ -165,12 +165,12 @@ public class ExcelUtil {
      * @param sheet 工作簿
      * @param map 每行每个单元格对应的列头信息
      */
-    public static final void createTableHeader(XSSFSheet sheet, Map<Integer, List<UserExcel>> map) {
+    public static final void createTableHeader(XSSFSheet sheet, Map<Integer, List<Excel>> map) {
         int startIndex=0;//cell起始位置
         int endIndex=0;//cell终止位置
-        for (Map.Entry<Integer, List<UserExcel>> entry : map.entrySet()) {
+        for (Map.Entry<Integer, List<Excel>> entry : map.entrySet()) {
             XSSFRow row = sheet.createRow(entry.getKey());
-            List<UserExcel> excels = entry.getValue();
+            List<Excel> excels = entry.getValue();
             for (int x = 0; x < excels.size(); x++) {
                 //合并单元格
                 if(excels.get(x).getCols()>1){
@@ -202,13 +202,13 @@ public class ExcelUtil {
             }
         }
     }
-    public static void createTableRows(XSSFSheet sheet, Map<Integer, List<UserExcel>> map, List objs, Class clazz)
+    public static void createTableRows(XSSFSheet sheet, Map<Integer, List<Excel>> map, List objs, Class clazz)
             throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, IntrospectionException,
             ClassNotFoundException, ParseException {
         int rowindex = map.size();
         int maxKey = 0;
-        List<UserExcel> ems = new ArrayList<>();
-        for (Map.Entry<Integer, List<UserExcel>> entry : map.entrySet()) {
+        List<Excel> ems = new ArrayList<>();
+        for (Map.Entry<Integer, List<Excel>> entry : map.entrySet()) {
             if (entry.getKey() > maxKey) {
                 maxKey = entry.getKey();
             }
@@ -218,7 +218,7 @@ public class ExcelUtil {
         for (Object obj : objs) {
             XSSFRow row = sheet.createRow(rowindex);
             for (int i = 0; i < ems.size(); i++) {
-                UserExcel em = (UserExcel) ems.get(i);
+                Excel em = (Excel) ems.get(i);
                 // 获得get方法
                 PropertyDescriptor pd = new PropertyDescriptor(em.getPropertyName(), clazz);
                 Method getMethod = pd.getReadMethod();
