@@ -227,7 +227,7 @@ public class ExcelUtil {
                 // 如果是日期类型进行转换
                 if (rtn != null) {
                     if (rtn instanceof Date) {
-                        value = DateUtils.formatDate((Date)rtn,"yyyy-MM-dd");
+                        value = DateUtils.formatDate((Date)rtn,"yyyy-MM-dd hh:mm:ss");
                     } else if(rtn instanceof BigDecimal){
                         NumberFormat nf = new DecimalFormat("#,##0.00");
                         value=nf.format((BigDecimal)rtn).toString();

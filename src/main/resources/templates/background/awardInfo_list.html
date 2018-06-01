@@ -34,7 +34,8 @@
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <a th:href="@{/acts}"><button class="btn btn-info">返回首页</button></a>
-            <a th:href="@{/exportrewardinfo}+${act_id}"><button class="btn btn-warning">批量导出</button></a>
+            <a id="export" th:href="${act_id}"><button class="btn btn-warning">批量导出</button></a>
+
             <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
@@ -93,7 +94,7 @@
         </div>
     <form id="cashingForm" method="post">
         <input type="hidden" name="_method" value="put">
-        <input type="hidden" name="act_id" th:value="${act_id}">
+        <input type="hidden" id="act_id" name="act_id" th:value="${act_id}">
     </form>
 
 
@@ -105,6 +106,16 @@
         $cashingForm = $("#cashingForm");
         $border = $(".border");
         $border.css("height",10);
+        $export = $("#export");
+        var act_id_url = $("#act_id").val();
+        var reward_or_rewards = act_id_url.split("/")[1];
+        var act_id = act_id_url.split("/")[2];
+        if ( reward_or_rewards == "awards") {
+            $export.attr("href","/exportallrewardinfo/"+act_id);
+        }
+        if (reward_or_rewards == "award") {
+            $export.attr("href","/exportuserrewardinfo/"+act_id);
+        }
         $cashingBTN.click(function () {
             var isOk = confirm("确定兑换吗？");
             if (isOk == true) {
