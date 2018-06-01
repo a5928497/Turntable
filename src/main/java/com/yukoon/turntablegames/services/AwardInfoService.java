@@ -29,35 +29,30 @@ public class AwardInfoService {
     @Autowired
     private DrawService drawService;
 
-
-    public List<AwardInof2human> findAllByActid(Integer id) {
-        List<AwardInfo> list_temp = awardInfoMapper.findAllByActid(id);
+    public List<AwardInof2human> convert(List<AwardInfo> awardList) {
         List<AwardInof2human> list = new ArrayList<>();
-        for (AwardInfo element:list_temp) {
+        for (AwardInfo element:awardList) {
             AwardInof2human awardInof2human = new AwardInof2human();
-            awardInof2human.setId(element.getId()).setIs_Cash(element.getIs_Cash())
-                    .setWinning_date(element.getWinning_date()).setCashing_date(element.getCashing_date())
-                    .setUsername(usersMapper.findUsernameById(element.getUser_id()))
-                    .setAct_name(activityMapper.findById(element.getAct_id()))
-                    .setReward_name(rewardMapper.findRewardnameById(element.getReward_id()));
+            awardInof2human.setId(element.getId());
+            awardInof2human.setIs_Cash(element.getIs_Cash());
+            awardInof2human.setWinning_date(element.getWinning_date());
+            awardInof2human.setCashing_date(element.getCashing_date());
+            awardInof2human.setUsername(usersMapper.findUsernameById(element.getUser_id()));
+            awardInof2human.setAct_name(activityMapper.findById(element.getAct_id()));
+            awardInof2human.setReward_name(rewardMapper.findRewardnameById(element.getReward_id()));
             list.add(awardInof2human);
         }
         return  list;
     }
 
+    public List<AwardInof2human> findAllByActid(Integer id) {
+        List<AwardInfo> list = awardInfoMapper.findAllByActid(id);
+        return convert(list);
+    }
+
     public List<AwardInof2human> findAllByUserid(Integer id) {
-        List<AwardInfo> list_temp = awardInfoMapper.findAllByUserid(id);
-        List<AwardInof2human> list = new ArrayList<>();
-        for (AwardInfo element:list_temp) {
-            AwardInof2human awardInof2human = new AwardInof2human();
-            awardInof2human.setId(element.getId()).setIs_Cash(element.getIs_Cash())
-                    .setWinning_date(element.getWinning_date()).setCashing_date(element.getCashing_date())
-                    .setUsername(usersMapper.findUsernameById(element.getUser_id()))
-                    .setAct_name(activityMapper.findById(element.getAct_id()))
-                    .setReward_name(rewardMapper.findRewardnameById(element.getReward_id()));
-            list.add(awardInof2human);
-        }
-        return  list;
+        List<AwardInfo> list = awardInfoMapper.findAllByUserid(id);
+        return convert(list);
     }
 
     public Integer findActidByUserid(Integer id) {
