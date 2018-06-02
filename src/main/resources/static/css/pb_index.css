@@ -32,9 +32,8 @@ body {
     margin-top: 25%;
     border: transparent;
     position: relative;
-    top: -110%;
 }
 #btn_holder {
-    min-width: 125px;
-    min-height: 125px;
+    min-width: 115px;
+    min-height: 115px;
 }
