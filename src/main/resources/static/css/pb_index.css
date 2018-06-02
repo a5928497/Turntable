@@ -20,7 +20,7 @@ body {
     background: url(../images/lottery.png) no-repeat;
     background-size: 100% 100%;
     position: relative;
-    top: 8%;
+    top: -57%;
     left: -2%;
     margin-left: 10%;
 
@@ -31,9 +31,29 @@ body {
     background-size: 100% 100%;
     margin-top: 25%;
     border: transparent;
+    outline: none;
     position: relative;
+    z-index: 999;
 }
 #btn_holder {
     min-width: 115px;
     min-height: 115px;
 }
+
+#award {
+    position: relative;
+    left: 35%;
+}
+.award-btn {
+    position: relative;
+    margin-top: 10%;
+}
+#info {
+    position: relative;
+    left: 25%;
+    font-size: 15pt;
+}
+span {
+    color: rgb(28,132,198);
+}
+

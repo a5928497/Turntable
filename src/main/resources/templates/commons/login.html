@@ -18,20 +18,32 @@
 </head>
 
 <body class="gray-bg">
+
     <div id="main_container">
+
         <div class="middle-box text-center loginscreen">
+            <p th:text="您好，+${session.user.username}"></p>
             <div class="plate">
                 <div id="plate_holder">
+                    <button class="drawBTN">
+                        <div id="btn_holder"></div>
+                    </button>
                     <div class="lottery">
-                        <button class="drawBTN">
-                            <div id="btn_holder"></div>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <p th:text="您共有+${session.user.draw_times}+次抽奖机会"></p>
+    <p>
+        <span>您还剩下</span><span id="available_draw_times_msg" th:text="${session.user.available_draw_times}"></span><span>次抽奖机会</span>
+    </p>
+    <a th:href="@{pbaward/}+${session.user.id}">获奖情况</a>
+    <form id="drawForm" method="post" modelAttribute="user" action="/draw">
+        <input type="hidden" id="user_id" name="id" th:value="${session.user.id}">
+        <input type="hidden" id="act_id" name="act_id" th:value="${session.user.act_id}">
+        <input type="hidden" id="available_draw_times" name="available_draw_times" th:value="${session.user.available_draw_times}">
+    </form>
     <!-- Mainly scripts -->
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

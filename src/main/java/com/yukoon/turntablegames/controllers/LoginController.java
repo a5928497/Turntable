@@ -25,6 +25,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(Map<String,Object> map, User user,String flag){
         User user_temp = userService.login(user);
+        Integer act_status = activityService.getStatusById(user_temp.getAct_id());
         if (user_temp != null) {
             //若不为空则代表验证正确
             map.put("user",user_temp);
@@ -40,10 +41,11 @@ public class LoginController {
             //若为管理员，则进入后台
             return "redirect:/acts";
         }
-        if (activityService.getStatusById(user_temp.getAct_id()) == 2) {
+        if (act_status == 2) {
             //若活动已经结束，则前往奖品查询页面
             return "redirect:/pbaward/" + user_temp.getId();
         }
+        map.put("act_status",act_status);
         return "public/pb_index";
     }
 

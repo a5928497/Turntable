@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <link rel="stylesheet" th:href="@{/css/pb_index.css}" />
-    <meta charset="UTF-8">
-    <title>pb</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <link href="../css/bootstrap.min.css"  rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css"  rel="stylesheet">
+
+    <link href="../css/animate.css"  rel="stylesheet">
+    <link href="../css/style.css"  rel="stylesheet">
+    <link href="../css/pb_index.css" rel="stylesheet">
+
 </head>
-<body >
-        <div id="page_container">
+
+<body class="gray-bg">
+
+    <div id="main_container">
         <p th:text="您好，+${session.user.username}"></p>
-        <div class="plate">
-            <div class="lottery">
+        <div class="middle-box text-center loginscreen">
+            <div class="plate">
+                <div id="plate_holder">
+                    <button class="drawBTN">
+                        <div id="btn_holder"></div>
+                    </button>
+                    <div class="lottery">
+
+                    </div>
+                </div>
             </div>
-            <button class="drawBTN" th:attr="draw_uri = @{/draw}">
-
-            </button>
         </div>
-
-        <p th:text="您共有+${session.user.draw_times}+次抽奖机会"></p>
-        <p>
+        <p id="info">
+            <span th:text="您共有+${session.user.draw_times}+次抽奖机会，"></span>
             <span>您还剩下</span><span id="available_draw_times_msg" th:text="${session.user.available_draw_times}"></span><span>次抽奖机会</span>
         </p>
-        <a th:href="@{pbaward/}+${session.user.id}">获奖情况</a>
-        <form id="drawForm" method="post" modelAttribute="user" action="/draw">
-            <input type="hidden" id="user_id" name="id" th:value="${session.user.id}">
-            <input type="hidden" id="act_id" name="act_id" th:value="${session.user.act_id}">
-            <input type="hidden" id="available_draw_times" name="available_draw_times" th:value="${session.user.available_draw_times}">
-        </form>
+        <div id="awardBTN_container">
+            <a th:href="@{pbaward/}+${session.user.id}" id="award"><button class="btn btn-lg btn-success award-btn">我的奖品</button></a>
         </div>
-        <script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
-        <script type="text/javascript" th:src="@{/js/jquery.rotate.js}"></script>
-        <script type="text/javascript" th:src="@{/js/pb_index.js}"></script>
+    </div>
+
+    <form id="drawForm" method="post" modelAttribute="user" action="/draw">
+        <input type="hidden" id="user_id" name="id" th:value="${session.user.id}">
+        <input type="hidden" id="act_id" name="act_id" th:value="${session.user.act_id}">
+        <input type="hidden" id="available_draw_times" name="available_draw_times" th:value="${session.user.available_draw_times}">
+    </form>
+    <input type="hidden" id="act_status" th:value="${act_status}">
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.rotate.js}"></script>
+    <script src="../js/pb_index.js"></script>
 </body>
+
 </html>
