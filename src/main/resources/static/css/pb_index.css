@@ -11,7 +11,7 @@ body {
 .plate {
     background: url(../images/plate.png) no-repeat;
     background-size: 100% 100%;
-    margin-top: 25%;
+    margin-top: 8%;
 }
 #plate_holder {
     min-width: 255px;
@@ -48,10 +48,12 @@ body {
     position: relative;
     margin-top: 10%;
 }
-#info {
+#times_left {
     position: relative;
-    left: 25%;
-    font-size: 15pt;
+    left: 30%;
+    margin-top: 8%;
+    font-size: 12pt;
+    font-weight: 900;
 }
 span {
     color: rgb(28,132,198);
