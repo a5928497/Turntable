@@ -5,25 +5,38 @@
     min-width: 320px;
     min-height: 485px;
 }
-
 input {
     BACKGROUND-COLOR: transparent;
     BORDER-BOTTOM:transparent;
     BORDER-LEFT: transparent;
     BORDER-RIGHT: transparent;
     BORDER-TOP: transparent;
-    COLOR: black;
-    border-color: #ffffff #ffffff #ffffff #ffffff; font-size: 9pt
 }
 
+#password {
+    margin-top: 6%;
+
+
+}
+
+#loginForm {
+    margin-top: 102%;
+    margin-left: 35%;
+}
 #submitBTN {
     BACKGROUND-COLOR: transparent;
     BORDER-BOTTOM:transparent;
     BORDER-LEFT: transparent;
     BORDER-RIGHT: transparent;
     BORDER-TOP: transparent;
-    COLOR: black;
-    border-color: #ffffff #ffffff #ffffff #ffffff; font-size: 9pt
+    width: 110%;
+    height: 80%;
+    margin-left: -55%;
+    margin-top: 5%;
+    /*top: 80%;*/
+    COLOR: transparent;
+    /*border-color: #ffffff #ffffff #ffffff #ffffff; */
+    font-size: 30pt;
 }
 input:focus{
     outline: none;
