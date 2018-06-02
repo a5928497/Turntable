@@ -18,9 +18,11 @@ public class UserService {
 
     @Transactional
     public User login(User user) {
-        User user_temp = usersMapper.login(user);
-        if (user_temp != null && user.getPassword().equals(user_temp.getPassword())) {
-            return user_temp;
+        List<User> list = usersMapper.login(user);
+        for (User user_temp :list) {
+            if (user_temp != null && user.getPassword().equals(user_temp.getPassword())) {
+                return user_temp;
+            }
         }
         return null;
     }

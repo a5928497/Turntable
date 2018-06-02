@@ -5,14 +5,19 @@ $(function () {
     $act_id =$("#act_id");
     $available_draw_times =$(".available_draw_times");
     $user_id = $("#user_id");
+    $plate_holder = $("#plate_holder");
     var curWwwPath=window.document.location.href;
     var pathName=window.document.location.pathname;
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
     var act_id = $act_id.val();
     var img_url  = localhostPaht +"/images/lottery"+act_id + ".jpg";
-
-    $lottery.css("background","url("+img_url+")");
+    var ph_width = parseInt($plate_holder.css("width"));
+    var pl_rate = 0.8286;
+    // $lottery.css("background","url("+img_url+")");
+    $plate_holder.css("height",ph_width);
+    var lottery_size = ph_width*pl_rate;
+    $lottery.css("width",lottery_size).css("height",lottery_size);
     $drawBTN.click(function () {
         var msg;
         var rotation;

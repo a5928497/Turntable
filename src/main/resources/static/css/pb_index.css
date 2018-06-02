@@ -1,37 +1,40 @@
-.plate {
-    width: 400px;
-    height: 400px;
-    margin: auto;
-    position: relative;
-    background: url(../images/plate.gif) no-repeat;
-}
-.lottery {
-    width: 340px;
-    height: 340px;
-    position: relative;
-    /*background: url(../images/lottery.png) no-repeat;*/
-    left: 30px;
-    top: 30px;
-}
-.drawBTN {
-    width: 186px;
-    height: 186px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-style: none;
-    outline: none;
-    margin-left: -94px;
-    margin-top: -94px;
-    background: url(../images/btn.png) no-repeat;
-}
-
-#page_container {
-    width: 640px;
-    margin: auto;
-    background: bisque;
-}
-
 body {
-    background: #6f9999;
+    min-height: 606px;
+}
+#main_container
+{
+    background: url(../images/bottom.jpg) no-repeat;
+    background-size: 100% 100%;
+    min-width: 320px;
+    min-height: 606px;
+}
+.plate {
+    background: url(../images/plate.png) no-repeat;
+    background-size: 100% 100%;
+    margin-top: 25%;
+}
+#plate_holder {
+    min-width: 255px;
+}
+.lottery{
+    background: url(../images/lottery.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    top: 8%;
+    left: -2%;
+    margin-left: 10%;
+
+}
+
+.drawBTN {
+    background: url(../images/btn.png) no-repeat;
+    background-size: 100% 100%;
+    margin-top: 25%;
+    border: transparent;
+    position: relative;
+    top: -110%;
+}
+#btn_holder {
+    min-width: 125px;
+    min-height: 125px;
 }

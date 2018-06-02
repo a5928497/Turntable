@@ -10,7 +10,7 @@ import java.util.Date;
 public class TestController {
     @GetMapping("/test")
     public String test() {
-        return "background/reward_picture_upload";
+        return "commons/login";
     }
 
 }
