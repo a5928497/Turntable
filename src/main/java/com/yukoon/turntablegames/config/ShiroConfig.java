@@ -1,9 +1,27 @@
 package com.yukoon.turntablegames.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.yukoon.turntablegames.realms.UserRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
+import org.apache.shiro.mgt.RememberMeManager;
+import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.util.LinkedHashMap;
 
@@ -21,9 +39,14 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/login", "anon"); //表示可以匿名访问
 		filterChainDefinitionMap.put("/logout","logout");
 		filterChainDefinitionMap.put("/error/*.html","anon");
-		filterChainDefinitionMap.put("/roles/*","roles[admin]");
-		filterChainDefinitionMap.put("/roles/*.*","roles[admin]");
-		filterChainDefinitionMap.put("/roles/**","roles[admin]");
+		filterChainDefinitionMap.put("/css/*.*","anon");
+		filterChainDefinitionMap.put("/font-awesome/*.*","anon");
+		filterChainDefinitionMap.put("/images/*.*","anon");
+		filterChainDefinitionMap.put("/js/*.*","anon");
+		filterChainDefinitionMap.put("/loginpage/*.*","anon");
+		filterChainDefinitionMap.put("/background/*","roles[admin]");
+		filterChainDefinitionMap.put("/background/*.*","roles[admin]");
+		filterChainDefinitionMap.put("/background/**","roles[admin]");
 		filterChainDefinitionMap.put("/*", "authc");//表示需要认证才可以访问
 		filterChainDefinitionMap.put("/**", "authc");//表示需要认证才可以访问
 		filterChainDefinitionMap.put("/*.*", "authc");
