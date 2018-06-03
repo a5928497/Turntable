@@ -47,6 +47,10 @@ public class UserService {
         usersMapper.addUser(user);
     }
 
+    public Integer getRoleidById(Integer id) {
+    	return usersMapper.getRoleidById(id);
+	}
+
     public List<User> findByUsernameAndActid(User user) {
         user.setUsername("%"+user.getUsername()+"%");
         return usersMapper.findByUsernameAndActid(user);
