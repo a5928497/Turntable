@@ -3,6 +3,7 @@ package com.yukoon.turntablegames.controllers;
 import com.yukoon.turntablegames.entities.User;
 import com.yukoon.turntablegames.services.ActivityService;
 import com.yukoon.turntablegames.services.UserService;
+import com.yukoon.turntablegames.utils.EncodeUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -48,7 +49,9 @@ public class LoginController {
 				return "redirect:/index.html";
             }
         }
+        user.setPassword(EncodeUtil.encodePassword(user.getPassword(),user.getUsername()));
         User user_temp = userService.login(user);
+		System.out.println(user);
         Integer act_status = activityService.getStatusById(user_temp.getAct_id());
         if (user_temp.getRole_id() == 2) {
             //若为管理员，则进入后台
