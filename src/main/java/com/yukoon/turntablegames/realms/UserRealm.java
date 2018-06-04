@@ -56,7 +56,6 @@ public class UserRealm extends AuthorizingRealm {
 		Set<String> roles = new HashSet<>();
 		String role = roleService.getRole(user_temp.getRole_id());
 		roles.add(role);
-//		System.out.println(roleService.getRole(user_temp.getRole_id()));
 		//3. 创建 SimpleAuthorizationInfo, 并设置其 roles 属性并返回
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
 		return info;
