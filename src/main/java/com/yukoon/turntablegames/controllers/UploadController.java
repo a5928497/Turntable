@@ -1,5 +1,6 @@
 package com.yukoon.turntablegames.controllers;
 
+import com.yukoon.turntablegames.config.PathConfig;
 import com.yukoon.turntablegames.services.ExcelUploadService;
 import com.yukoon.turntablegames.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class UploadController {
     @Autowired
     private ExcelUploadService excelUploadService;
+    @Autowired
+    private PathConfig pathConfig;
 
     //前往图片上传
     @GetMapping("/touploadimg/{act_id}")
@@ -35,7 +38,7 @@ public class UploadController {
     @PostMapping("/imgupload")
     public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
             , Integer act_id, ModelMap modelMap){
-        String filePath = request.getSession().getServletContext().getRealPath("images/");
+        String filePath = pathConfig.getImagespath()+"/images/";
         String fileName = pic.getOriginalFilename();
         String uploadMsg = "图片上传成功!";
         if (!FileUtil.isImg(fileName)){

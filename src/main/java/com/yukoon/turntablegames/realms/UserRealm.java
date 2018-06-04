@@ -32,7 +32,6 @@ public class UserRealm extends AuthorizingRealm {
 		User user = new User().setUsername(username).setPassword(EncodeUtil.encodePassword(String.valueOf(upToken.getPassword()),username));
 		//3. 从数据库获取User准备进行比对
 		User user_temp = userService.login(user);
-		System.out.println(user_temp);
 		//4. 异常用户抛出异常
 		if (user_temp == null) {
 			throw new UnknownAccountException("用户不存在!");

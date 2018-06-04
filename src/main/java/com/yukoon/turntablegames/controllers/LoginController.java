@@ -1,5 +1,6 @@
 package com.yukoon.turntablegames.controllers;
 
+import com.yukoon.turntablegames.config.PathConfig;
 import com.yukoon.turntablegames.entities.User;
 import com.yukoon.turntablegames.services.ActivityService;
 import com.yukoon.turntablegames.services.UserService;
@@ -26,6 +27,8 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private ActivityService activityService;
+    @Autowired
+    private PathConfig pathConfig;
 
     @PostMapping("/login")
     public String login(Map<String,Object> map, User user,String flag){
@@ -51,7 +54,6 @@ public class LoginController {
         }
         user.setPassword(EncodeUtil.encodePassword(user.getPassword(),user.getUsername()));
         User user_temp = userService.login(user);
-		System.out.println(user);
         Integer act_status = activityService.getStatusById(user_temp.getAct_id());
         if (user_temp.getRole_id() == 2) {
             //若为管理员，则进入后台
@@ -61,6 +63,7 @@ public class LoginController {
             //若活动已经结束，则前往奖品查询页面
             return "redirect:/pbaward/" + user_temp.getId();
         }
+
         map.put("user",user_temp);
         map.put("act_status",act_status);
         return "public/pb_index";

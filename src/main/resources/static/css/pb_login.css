@@ -5,40 +5,36 @@
     min-width: 320px;
     min-height: 485px;
 }
-input {
-    BACKGROUND-COLOR: transparent;
-    BORDER-BOTTOM:transparent;
-    BORDER-LEFT: transparent;
-    BORDER-RIGHT: transparent;
-    BORDER-TOP: transparent;
+
+#loginForm {
+    margin-top: 101%;
+    margin-left: 32%;
+}
+
+#username {
+    margin-left: 5%;
 }
 
 #password {
-    margin-top: 6%;
-
-
-}
-
-#loginForm {
-    margin-top: 102%;
-    margin-left: 35%;
+    position: relative;
+    margin-top: 4%;
+    margin-left: 5%;
 }
 #submitBTN {
-    BACKGROUND-COLOR: transparent;
-    BORDER-BOTTOM:transparent;
-    BORDER-LEFT: transparent;
-    BORDER-RIGHT: transparent;
-    BORDER-TOP: transparent;
-    width: 110%;
-    height: 80%;
-    margin-left: -55%;
-    margin-top: 5%;
-    /*top: 80%;*/
-    COLOR: transparent;
-    /*border-color: #ffffff #ffffff #ffffff #ffffff; */
-    font-size: 30pt;
-}
-input:focus{
+    background: url("../images/login_btn.png");
+    background-size: 100% 100%;
+    margin-top: 10%;
+    margin-left: -40%;
+    border-bottom: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
     outline: none;
-    background-color:transparent;
 }
+#button_holder {
+
+    min-width: 160px;
+    min-height: 50px;
+}
+
+

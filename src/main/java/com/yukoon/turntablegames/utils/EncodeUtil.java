@@ -12,4 +12,8 @@ public class EncodeUtil {
 		Object result = new SimpleHash(hashAlgorithmName, credentials, salt, hashIterations);
 		return result.toString();
 	}
+
+	public static void main(String[] args) {
+		System.out.println(encodePassword("c1qa","123"));
+	}
 }
