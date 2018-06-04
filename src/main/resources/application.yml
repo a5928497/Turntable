@@ -15,6 +15,9 @@ spring:
           #等待连接最长的超时时间
           max-wait-millis: 200
   http:
+    encoding:
+      charset: utf-8
+      enabled: true
     multipart:
       #上传文件大小限制
       max-file-size: 1MB

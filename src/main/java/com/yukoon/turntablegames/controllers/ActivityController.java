@@ -3,6 +3,7 @@ package com.yukoon.turntablegames.controllers;
 import com.yukoon.turntablegames.entities.Activity;
 import com.yukoon.turntablegames.mappers.ActivityMapper;
 import com.yukoon.turntablegames.services.ActivityService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class ActivityController {
         return "redirect:/acts";
     }
 
+    @RequiresRoles("admin")
     @GetMapping("/act")
     public String actToAdd() {
         return "background/act_input";

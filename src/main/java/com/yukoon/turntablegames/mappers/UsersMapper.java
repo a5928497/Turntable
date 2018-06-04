@@ -18,7 +18,7 @@ public interface UsersMapper {
     @Select("SELECT id,username,draw_times,available_draw_times FROM users WHERE act_id =#{act_id}")
     public List<User> findAllByActId(Integer act_id);
 
-    @Select("SELECT id,username,act_id,draw_times,available_draw_times FROM users WHERE id=#{id}")
+    @Select("SELECT id,username,act_id,role_id,draw_times,available_draw_times FROM users WHERE id=#{id}")
     public User findById(Integer id);
 
     @Select("SELECT id,username,act_id,draw_times,available_draw_times FROM users WHERE username LIKE #{username} AND act_id =#{act_id}")

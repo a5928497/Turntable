@@ -52,10 +52,11 @@ public class UserRealm extends AuthorizingRealm {
 		//1. 从 principalCollection 中来获取登录用户的信息
 		Object principal = principalCollection.getPrimaryPrincipal();
 		//2. 利用登录的用户的信息来当前用户的角色
-		User user_temp = userService.findById(Integer.parseInt((String)principal));
+		User user_temp = userService.findById(Integer.parseInt(principal.toString()));
 		Set<String> roles = new HashSet<>();
-		roles.add(roleService.getRole(user_temp.getRole_id()));
-		System.out.println(roleService.getRole(user_temp.getRole_id()));
+		String role = roleService.getRole(user_temp.getRole_id());
+		roles.add(role);
+//		System.out.println(roleService.getRole(user_temp.getRole_id()));
 		//3. 创建 SimpleAuthorizationInfo, 并设置其 roles 属性并返回
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
 		return info;
