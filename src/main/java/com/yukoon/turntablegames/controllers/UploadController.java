@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
@@ -37,13 +39,14 @@ public class UploadController {
     //图片上传
     @PostMapping("/imgupload")
     public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
-            , Integer act_id, ModelMap modelMap){
+            , Integer act_id,RedirectAttributes attributes){
         String filePath = pathConfig.getImagespath()+"/images/";
         String fileName = pic.getOriginalFilename();
         String uploadMsg = "图片上传成功!";
         if (!FileUtil.isImg(fileName)){
             uploadMsg = "图片上传出现错误,请重新上传!";
-            return "redirect:/touploadimg/"+act_id+"?uploadMsg="+uploadMsg;
+            attributes.addFlashAttribute("uploadMsg",uploadMsg);
+            return "redirect:/touploadimg/"+act_id;
         }
         //重命名文件
         fileName = "lottery"+act_id+".jpg";
@@ -51,16 +54,19 @@ public class UploadController {
             FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
         }catch (Exception e) {
             uploadMsg = "图片上传出现错误,请重新上传!";
-            return "redirect:/touploadimg/"+act_id+"?uploadMsg="+uploadMsg;
+			attributes.addFlashAttribute("uploadMsg",uploadMsg);
+			return "redirect:/touploadimg/"+act_id;
         }
-        return "redirect:/touploadimg/"+act_id+"?uploadMsg="+uploadMsg;
+		attributes.addFlashAttribute("uploadMsg",uploadMsg);
+		return "redirect:/touploadimg/"+act_id;
     }
 
     //前往Excel上传
     @GetMapping("/touploadexcel/{act_id}")
-    public String toUploadExcel(@PathVariable("act_id") Integer act_id, Map<String,Object> map, String uploadMsg) {
-        if (uploadMsg !=null) {
-            System.out.println(uploadMsg);
+    public String toUploadExcel(@PathVariable("act_id") Integer act_id, Map<String,Object> map,HttpServletRequest request) {
+		Map<String,?> map1 = RequestContextUtils.getInputFlashMap(request);
+		String uploadMsg = map1.get("uploadMsg").toString();
+		if (uploadMsg !=null) {
             map.put("uploadMsg",uploadMsg);
         }
         map.put("act_id",act_id);
