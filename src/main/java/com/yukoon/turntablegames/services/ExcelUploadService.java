@@ -3,6 +3,7 @@ package com.yukoon.turntablegames.services;
 import com.yukoon.turntablegames.entities.User;
 import com.yukoon.turntablegames.mappers.ActivityMapper;
 import com.yukoon.turntablegames.mappers.UsersMapper;
+import com.yukoon.turntablegames.utils.EncodeUtil;
 import com.yukoon.turntablegames.utils.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,8 @@ public class ExcelUploadService {
 			User user = new User();
 			Integer times = Integer.valueOf(ob.get(1).toString());
 			user.setUsername(String.valueOf(ob.get(0)));
-			user.setPassword(activityMapper.getKeyByActId(act_id));
+			//加密密码
+			user.setPassword(EncodeUtil.encodePassword(activityMapper.getKeyByActId(act_id),String.valueOf(ob.get(0))));
 			user.setRole_id(1).setAct_id(act_id).setDraw_times(times).setAvailable_draw_times(times);
 			users.add(user);
 		}

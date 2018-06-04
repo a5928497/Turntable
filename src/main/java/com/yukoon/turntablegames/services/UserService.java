@@ -3,6 +3,7 @@ package com.yukoon.turntablegames.services;
 import com.yukoon.turntablegames.entities.User;
 import com.yukoon.turntablegames.mappers.ActivityMapper;
 import com.yukoon.turntablegames.mappers.UsersMapper;
+import com.yukoon.turntablegames.utils.EncodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +44,7 @@ public class UserService {
     }
     @Transactional
     public void addUser(User user) {
-        user.setPassword(activityMapper.getKeyByActId(user.getAct_id())).setRole_id(1);
+        user.setPassword(EncodeUtil.encodePassword(activityMapper.getKeyByActId(user.getAct_id()),user.getUsername())).setRole_id(1);
         usersMapper.addUser(user);
     }
 

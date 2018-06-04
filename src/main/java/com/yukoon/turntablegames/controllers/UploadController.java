@@ -65,7 +65,10 @@ public class UploadController {
     @GetMapping("/touploadexcel/{act_id}")
     public String toUploadExcel(@PathVariable("act_id") Integer act_id, Map<String,Object> map,HttpServletRequest request) {
 		Map<String,?> map1 = RequestContextUtils.getInputFlashMap(request);
-		String uploadMsg = map1.get("uploadMsg").toString();
+        String uploadMsg = null;
+		if (map1 != null) {
+            uploadMsg = map1.get("uploadMsg").toString();
+        }
 		if (uploadMsg !=null) {
             map.put("uploadMsg",uploadMsg);
         }
@@ -75,7 +78,7 @@ public class UploadController {
 
     //Excel上传
     @PostMapping("/excelupload")
-    public String uploadExcel(@RequestParam("excel")MultipartFile excel,Integer act_id) {
+    public String uploadExcel(@RequestParam("excel")MultipartFile excel,Integer act_id,RedirectAttributes attributes) {
         try {
             InputStream in = excel.getInputStream();
             excelUploadService.importUserExcel(in,excel,act_id);
@@ -83,9 +86,11 @@ public class UploadController {
         }catch (Exception e){
         	e.printStackTrace();
 			System.out.println("失败");
+			attributes.addFlashAttribute("uploadMsg","上传失败，请重试！");
 			return "redirect:/touploadexcel/"+act_id;
         }
 		System.out.println("成功");
+        attributes.addFlashAttribute("uploadMsg","上传成功！");
         return "redirect:/touploadexcel/"+act_id;
     }
 
