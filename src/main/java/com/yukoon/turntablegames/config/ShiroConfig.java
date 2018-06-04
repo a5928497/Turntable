@@ -44,6 +44,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/images/*.*","anon");
 		filterChainDefinitionMap.put("/js/*.*","anon");
 		filterChainDefinitionMap.put("/loginpage/*.*","anon");
+		filterChainDefinitionMap.put("/background/**","authc");
 		filterChainDefinitionMap.put("/background/*","roles[admin]");
 		filterChainDefinitionMap.put("/background/*.*","roles[admin]");
 		filterChainDefinitionMap.put("/background/**","roles[admin]");
