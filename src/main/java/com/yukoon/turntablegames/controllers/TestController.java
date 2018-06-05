@@ -10,7 +10,7 @@ import java.util.Date;
 public class TestController {
     @GetMapping("/test")
     public String test() {
-        return "commons/login";
+        return "commons/logout";
     }
 
 }

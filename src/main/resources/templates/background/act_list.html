@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -14,7 +13,7 @@
 
     <!-- FooTable -->
     <link th:href="@{/css/plugins/footable/footable.core.css}" rel="stylesheet">
-
+    <link rel="stylesheet" href="../css/commons/logout.css">
     <link th:href="@{/css/animate.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
 
@@ -30,6 +29,7 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
+                    <a th:replace="commons/logout::logout_btn"></a>
                     <h2>管理后台</h2>
                 </div>
             </div>
