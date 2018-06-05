@@ -44,7 +44,7 @@ public class UploadController {
         String fileName = pic.getOriginalFilename();
         String uploadMsg = "图片上传成功!";
         if (!FileUtil.isImg(fileName)){
-            uploadMsg = "图片上传出现错误,请重新上传!";
+            uploadMsg = "该文件不是图片格式,请重新上传!";
             attributes.addFlashAttribute("uploadMsg",uploadMsg);
             return "redirect:/touploadimg/"+act_id;
         }

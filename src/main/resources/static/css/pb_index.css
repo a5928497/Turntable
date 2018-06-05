@@ -17,7 +17,7 @@ body {
     min-width: 255px;
 }
 .lottery{
-    background: url(../images/lottery.png) no-repeat;
+    /*background: url(../images/lottery.png) no-repeat;*/
     background-size: 100% 100%;
     position: relative;
     top: -57%;

@@ -1,7 +1,9 @@
 package com.yukoon.turntablegames.services;
 
+import com.yukoon.turntablegames.config.PathConfig;
 import com.yukoon.turntablegames.entities.Activity;
 import com.yukoon.turntablegames.mappers.ActivityMapper;
+import com.yukoon.turntablegames.utils.FileUtil;
 import com.yukoon.turntablegames.utils.KeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class ActivityService {
     private static final int KEY_LENGTH = 4;
     @Autowired
     private ActivityMapper activityMapper;
+    @Autowired
+    private PathConfig pathConfig;
 
     @Transactional
     public void addAct(Activity activity) {
