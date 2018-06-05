@@ -110,7 +110,10 @@
         $border = $(".border");
         $border.css("height",10);
         $deleteBTNs.click(function () {
-            $deleteForm.attr("action",$(this).attr("del_uri")).submit();
+            var isok = confirm("确定删除吗？");
+            if (isok) {
+                $deleteForm.attr("action",$(this).attr("del_uri")).submit();
+            }
             return false;
         });
     </script>
