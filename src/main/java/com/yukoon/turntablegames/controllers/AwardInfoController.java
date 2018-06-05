@@ -1,6 +1,5 @@
 package com.yukoon.turntablegames.controllers;
 
-import com.yukoon.turntablegames.entities.AwardInof2human;
 import com.yukoon.turntablegames.entities.Recommender;
 import com.yukoon.turntablegames.services.AwardInfoService;
 import com.yukoon.turntablegames.services.RecommenderService;
@@ -11,9 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller

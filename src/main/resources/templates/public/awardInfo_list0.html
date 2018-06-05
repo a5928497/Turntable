@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>pb</title>
+</head>
+<body>
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <td>奖品名</td>
+        <td>状态</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="awardInfo:${awardInfos}">
+        <td th:text="${awardInfo.reward_name}">reward_name</td>
+        <td th:text="未兑换" th:if="${awardInfo.is_Cash == 0}">isCash</td>
+        <td th:text="已兑换" th:if="${awardInfo.is_Cash == 1}">isCash</td>
+        <td>
+            <button class="cashingBTN" th:attr="put_uri=@{/pbaward/}+${awardInfo.id}" th:if="${awardInfo.is_Cash == 0}">兑换</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<input type="hidden" id="wrong_recommender" th:if="${#httpServletRequest.getParameter('flag')!=null}">
+<form id="cashingForm" method="post" modelAttribute="recommender">
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" id="recommender_id" name="recommender_id">
+    <input type="hidden" id="user_id" name="user_id" th:value="${user_id}">
+    <input type="hidden" name="act_id" th:value="${act_id}">
+</form>
+<script type="text/javascript" src="" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/pb_awardInfo_list.js}"></script>
+
+</body>
+</html>

@@ -14,6 +14,6 @@ public class EncodeUtil {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(encodePassword("riou","12345678901"));
+		System.out.println(encodePassword("abcd","111"));
 	}
 }
