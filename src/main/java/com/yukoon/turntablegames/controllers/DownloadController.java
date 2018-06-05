@@ -27,7 +27,7 @@ public class DownloadController {
 	public void exportallrewardinfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
 		response.reset(); //清除buffer缓存
 		Map<String,Object> map = new HashMap<String,Object>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 		response.setHeader("Content-Disposition", "attachment;filename="+sdf.format(new Date())+".xlsx");
 		response.setContentType("application/vnd.ms-excel;charset=UTF-8");
 		response.setHeader("Pragma", "no-cache");

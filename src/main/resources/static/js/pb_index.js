@@ -6,12 +6,17 @@ $(function () {
     $available_draw_times =$(".available_draw_times");
     $user_id = $("#user_id");
     $plate_holder = $("#plate_holder");
+    /*
+    //获得当前路径
     var curWwwPath=window.document.location.href;
     var pathName=window.document.location.pathname;
     var pos=curWwwPath.indexOf(pathName);
     var localhostPaht=curWwwPath.substring(0,pos);
+    */
+    var img_path = $("#img_path").val();
     var act_id = $act_id.val();
-    var img_url  = localhostPaht +"/images/lottery"+act_id + ".jpg";
+    var img_url  = img_path+"lottery"+act_id + ".jpg";
+    console.log(img_url);
     var ph_width = parseInt($plate_holder.css("width"));
     var pl_rate = 0.8286;
     var act_status = parseInt($("#act_status").val());

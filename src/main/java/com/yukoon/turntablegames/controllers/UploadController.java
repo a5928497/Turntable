@@ -40,7 +40,7 @@ public class UploadController {
     @PostMapping("/imgupload")
     public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
             , Integer act_id,RedirectAttributes attributes){
-        String filePath = pathConfig.getImagespath()+"/images/";
+        String filePath = pathConfig.getImagespath();
         String fileName = pic.getOriginalFilename();
         String uploadMsg = "图片上传成功!";
         if (!FileUtil.isImg(fileName)){
