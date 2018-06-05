@@ -35,7 +35,7 @@ public class PathConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	    registry.addResourceHandler("/images/").addResourceLocations("file:///f:/material/images/");
+	    registry.addResourceHandler("/local_images/**").addResourceLocations("file:"+imagespath);
         super.addResourceHandlers(registry);
     }
 

@@ -99,8 +99,7 @@
     var localhostPaht=curWwwPath.substring(0,pos);
     var act_id = $("#act_id").val();
     //根据路径获取图片
-    var img_path = $("#img_path").val();
-    var img_url  = img_path+"lottery"+act_id + ".jpg";
+    var img_url  ="/local_images/lottery"+act_id + ".jpg";
     $("#lottery").attr("src",img_url).one("error",function (e) {
         $(this).remove();
     });
