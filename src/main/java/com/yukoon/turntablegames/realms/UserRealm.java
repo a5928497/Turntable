@@ -1,6 +1,8 @@
 package com.yukoon.turntablegames.realms;
 
+import com.yukoon.turntablegames.entities.Permission;
 import com.yukoon.turntablegames.entities.User;
+import com.yukoon.turntablegames.services.PermissionService;
 import com.yukoon.turntablegames.services.RoleService;
 import com.yukoon.turntablegames.services.UserService;
 import com.yukoon.turntablegames.utils.EncodeUtil;
@@ -21,6 +23,8 @@ public class UserRealm extends AuthorizingRealm {
 	private UserService userService;
 	@Autowired
 	private RoleService roleService;
+	@Autowired
+    private PermissionService permissionService;
 
 	//认证的方法
 	@Override
@@ -52,11 +56,15 @@ public class UserRealm extends AuthorizingRealm {
 		Object principal = principalCollection.getPrimaryPrincipal();
 		//2. 利用登录的用户的信息来当前用户的角色
 		User user_temp = userService.findById(Integer.parseInt(principal.toString()));
+        //3. 创建 SimpleAuthorizationInfo, 并设置其 roles 属性并返回
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		Set<String> roles = new HashSet<>();
 		String role = roleService.getRole(user_temp.getRole_id());
 		roles.add(role);
-		//3. 创建 SimpleAuthorizationInfo, 并设置其 roles 属性并返回
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
+		info.addRoles(roles);
+		for (String perm: permissionService.getPermNameByRoleid(user_temp.getRole_id())) {
+		    info.addStringPermission(perm);
+        }
 		return info;
 	}
 

@@ -20,6 +20,7 @@ public class DrawController {
     @Autowired
     private UserService userService;
 
+    //随机抽取奖品并返回结果用以回显
     @ResponseBody
     @PostMapping("/draw")
     public Reward getDrawResult(User user, Map<String,Object> map,ModelMap modelMap) {
@@ -31,6 +32,7 @@ public class DrawController {
         return reward;
     }
 
+    //前台获取某一用户的信息
     @ResponseBody
     @GetMapping("/getVT/{user_id}")
     public User getAvailableDrawTimes(@PathVariable("user_id")Integer user_id) {

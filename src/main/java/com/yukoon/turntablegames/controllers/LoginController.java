@@ -69,33 +69,35 @@ public class LoginController {
         return "public/pb_index";
     }
 
-    @PostMapping("/login1")
-    public String login1(Map<String,Object> map, User user,String flag){
-        User user_temp = userService.login(user);
-        Integer act_status = activityService.getStatusById(user_temp.getAct_id());
-        if (user_temp != null) {
-            //若不为空则代表验证正确
-            map.put("user",user_temp);
-        }else {
-            //若从后台登录，则回后台登录界面
-            if ("bg".equals(flag)){
-                return "redirect:/loginpage/login.html";
-            }
-            //前台登录则返回前台登录界面
-            return "redirect:/index.html";
-        }
-        if (user_temp.getRole_id() == 2) {
-            //若为管理员，则进入后台
-            return "redirect:/acts";
-        }
-        if (act_status == 2) {
-            //若活动已经结束，则前往奖品查询页面
-            return "redirect:/pbaward/" + user_temp.getId();
-        }
-        map.put("act_status",act_status);
-        return "public/pb_index";
-    }
+        //未添加Shiro前的登录方法
+//    @PostMapping("/login1")
+//    public String login1(Map<String,Object> map, User user,String flag){
+//        User user_temp = userService.login(user);
+//        Integer act_status = activityService.getStatusById(user_temp.getAct_id());
+//        if (user_temp != null) {
+//            //若不为空则代表验证正确
+//            map.put("user",user_temp);
+//        }else {
+//            //若从后台登录，则回后台登录界面
+//            if ("bg".equals(flag)){
+//                return "redirect:/loginpage/login.html";
+//            }
+//            //前台登录则返回前台登录界面
+//            return "redirect:/index.html";
+//        }
+//        if (user_temp.getRole_id() == 2) {
+//            //若为管理员，则进入后台
+//            return "redirect:/acts";
+//        }
+//        if (act_status == 2) {
+//            //若活动已经结束，则前往奖品查询页面
+//            return "redirect:/pbaward/" + user_temp.getId();
+//        }
+//        map.put("act_status",act_status);
+//        return "public/pb_index";
+//    }
 
+    //前台刷新页面
     @GetMapping("/reflash")
     public String reflash(ModelMap modelMap, User user) {
         //更新session中user信息

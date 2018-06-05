@@ -3,6 +3,8 @@ package com.yukoon.turntablegames.controllers;
 import com.yukoon.turntablegames.config.PathConfig;
 import com.yukoon.turntablegames.services.ExcelUploadService;
 import com.yukoon.turntablegames.utils.FileUtil;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,7 +27,9 @@ public class UploadController {
     @Autowired
     private PathConfig pathConfig;
 
-    //前往图片上传
+    //后台前往奖品转盘图片上传
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @GetMapping("/touploadimg/{act_id}")
     public String toUploadImg(@PathVariable("act_id") Integer act_id, Map<String,Object> map, String uploadMsg) {
         if (uploadMsg !=null) {
@@ -36,7 +40,9 @@ public class UploadController {
         return "background/reward_picture_upload";
     }
 
-    //图片上传
+    //后台奖品转盘图片上传
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @PostMapping("/imgupload")
     public String upload(@RequestParam("pic")MultipartFile pic, HttpServletRequest request
             , Integer act_id,RedirectAttributes attributes){
@@ -61,7 +67,9 @@ public class UploadController {
 		return "redirect:/touploadimg/"+act_id;
     }
 
-    //前往Excel上传
+    //后台前往客户Excel上传
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @GetMapping("/touploadexcel/{act_id}")
     public String toUploadExcel(@PathVariable("act_id") Integer act_id, Map<String,Object> map,HttpServletRequest request) {
 		Map<String,?> map1 = RequestContextUtils.getInputFlashMap(request);
@@ -76,7 +84,9 @@ public class UploadController {
         return "background/user_excel_upload";
     }
 
-    //Excel上传
+    //后台进行客户Excel上传
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @PostMapping("/excelupload")
     public String uploadExcel(@RequestParam("excel")MultipartFile excel,Integer act_id,RedirectAttributes attributes) {
         try {

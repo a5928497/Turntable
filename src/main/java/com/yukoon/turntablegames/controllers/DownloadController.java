@@ -2,6 +2,8 @@ package com.yukoon.turntablegames.controllers;
 
 import com.yukoon.turntablegames.services.DownloadService;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,9 @@ public class DownloadController {
 	@Autowired
 	private DownloadService downloadService;
 
+	//批量导出整个活动的中奖情况
+	@RequiresRoles("admin")
+	@RequiresPermissions("query")
 	@ResponseBody
 	@GetMapping("/exportallrewardinfo/{act_id}")
 	public void exportallrewardinfo(@PathVariable("act_id")Integer act_id, HttpServletRequest request, HttpServletResponse response) {
@@ -48,6 +53,9 @@ public class DownloadController {
 		System.out.println("成功");
 	}
 
+	//导出某一用户的中奖情况
+	@RequiresRoles("admin")
+	@RequiresPermissions("query")
 	@ResponseBody
 	@GetMapping("/exportuserrewardinfo/{user_id}")
 	public void exportuserrewardinfo(@PathVariable("user_id")Integer user_id, HttpServletRequest request, HttpServletResponse response) {

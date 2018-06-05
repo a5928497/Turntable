@@ -4,6 +4,8 @@ import com.yukoon.turntablegames.entities.AwardInof2human;
 import com.yukoon.turntablegames.entities.Recommender;
 import com.yukoon.turntablegames.services.AwardInfoService;
 import com.yukoon.turntablegames.services.RecommenderService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,8 @@ public class AwardInfoController {
     private RecommenderService recommenderService;
 
     //后台查询同一活动下所有中奖情况
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @GetMapping("/awards/{id}")
     public String findAllByActid(@PathVariable("id")Integer id, Map<String,Object> map) {
         map.put("awardInfos",awardInfoService.findAllByActid(id));
@@ -30,6 +34,8 @@ public class AwardInfoController {
     }
 
     //后台查询某一活动下某一客户中奖情况
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @GetMapping("/award/{id}")
     public String findAllByUserid(@PathVariable("id")Integer id, Map<String,Object> map) {
         map.put("awardInfos",awardInfoService.findAllByUserid(id));
@@ -46,6 +52,8 @@ public class AwardInfoController {
     }
 
     //后台兑换
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @PutMapping("/award/{id}")
     public String cashAward(@PathVariable("id")Integer id,String act_id) {
         awardInfoService.cashAward(id);
