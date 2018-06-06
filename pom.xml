@@ -302,9 +302,9 @@
 		</plugins>
 	</build>
     <scm>
-        <connection>scm:git:git@github.com:a5928497/turntable.git</connection>
-        <url>scm:git:git@github.com:a5928497/turntable.git</url>
-        <developerConnection>scm:git:git@github.com:a5928497/turntable.git</developerConnection>
+        <connection>scm:git:https://github.com/a5928497/turntable.git</connection>
+        <url>scm:git:https://github.com/a5928497/turntable.git</url>
+        <developerConnection>scm:git:https://github.com/a5928497/turntable.git</developerConnection>
     </scm>
     <distributionManagement>
         <repository>
