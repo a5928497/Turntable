@@ -16,7 +16,7 @@
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link th:href="@{/webjars/jasny-bootstrap/3.1.2/dist/css/jasny-bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/codemirror/5.33.0/lib/codemirror.css}" rel="stylesheet">
-    <link rel="stylesheet" href="../css/commons/logout.css">
+    <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -72,10 +72,9 @@
         </div>
         </div>
         </div>
-    <!-- Mainly scripts -->
+
     <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <!-- Jasny -->
     <script type="text/javascript" th:src="@{/webjars/jasny-bootstrap/3.1.2/dist/js/jasny-bootstrap.min.js}"></script>
 <script>
     $backBTN = $(".backBTN");
