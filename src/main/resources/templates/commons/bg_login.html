@@ -8,11 +8,10 @@
 
     <title>Login</title>
 
-    <link href="../css/bootstrap.min.css"  rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css"  rel="stylesheet">
-
-    <link href="../css/animate.css"  rel="stylesheet">
-    <link href="../css/style.css"  rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"  rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}"  rel="stylesheet">
+    <link th:href="@{/css/animate.css}"  rel="stylesheet">
+    <link th:href="@{/css/style.css}"  rel="stylesheet">
 
 </head>
 
@@ -43,16 +42,8 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script>
-        $submitBTN = $("#submitBTN");
-        $loginForm = $("#loginForm");
-        $submitBTN.click(function () {
-            $loginForm.submit();
-            return false;
-        });
-    </script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
 </body>
 
 </html>

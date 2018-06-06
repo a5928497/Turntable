@@ -8,8 +8,8 @@
 
     <title>Login</title>
 
-    <link href="../css/bootstrap.min.css"  rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css"  rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"  rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}"  rel="stylesheet">
 
     <link href="../css/animate.css"  rel="stylesheet">
     <link href="../css/style.css"  rel="stylesheet">
@@ -50,10 +50,10 @@
     <input type="hidden" id="act_status" th:value="${act_status}">
     <input type="hidden" id="img_path" th:value="${img_path}">
     <!-- Mainly scripts -->
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.rotate.js}"></script>
-    <script src="../js/pb_index.js"></script>
+    <script th:src="@{/js/pb_index.js}"></script>
 </body>
 
 </html>

@@ -32,7 +32,7 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 		bean.setSecurityManager( manager);
 		//配置登录的url和登录成功的url
-		bean.setLoginUrl("/index.html");
+		bean.setLoginUrl("/index");
 		bean.setSuccessUrl("/users");
 		//配置访问权限
 		LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
@@ -43,10 +43,10 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/font-awesome/*.*","anon");
 		filterChainDefinitionMap.put("/images/*.*","anon");
 		filterChainDefinitionMap.put("/js/*.*","anon");
-		filterChainDefinitionMap.put("/loginpage/*.*","anon");
-//        filterChainDefinitionMap.put("/background/*","authc");
-//        filterChainDefinitionMap.put("/background/**","authc");
-//        filterChainDefinitionMap.put("/background/*.*","authc");
+        filterChainDefinitionMap.put("/index","anon");
+        filterChainDefinitionMap.put("/background","anon");
+        filterChainDefinitionMap.put("/commons/bg_login.html","anon");
+        filterChainDefinitionMap.put("/commons/index.html","anon");
 		filterChainDefinitionMap.put("/*", "authc");//表示需要认证才可以访问
 		filterChainDefinitionMap.put("/**", "authc");//表示需要认证才可以访问
 		filterChainDefinitionMap.put("/*.*", "authc");

@@ -46,10 +46,10 @@ public class LoginController {
                 System.out.println("登陆失败:"+ae.toString());
 				//若从后台登录，则回后台登录界面
 				if ("bg".equals(flag)){
-					return "redirect:/loginpage/login.html";
+					return "redirect:/background";
 				}
 				//前台登录则返回前台登录界面
-				return "redirect:/index.html";
+				return "redirect:/index";
             }
         }
         user.setPassword(EncodeUtil.encodePassword(user.getPassword(),user.getUsername()));
@@ -103,5 +103,17 @@ public class LoginController {
         //更新session中user信息
         modelMap.addAttribute("user",userService.findById(user.getId()));
         return "public/pb_index";
+    }
+
+    //请求登录首页
+    @GetMapping("/index")
+    public String index() {
+        return "commons/index";
+    }
+
+    //请求后台登录页面
+    @GetMapping("/background")
+    public String background() {
+        return "commons/bg_login";
     }
 }
