@@ -9,8 +9,8 @@
     <title>info</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"  rel="stylesheet">
-    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}"  rel="stylesheet">
-    <link th:href="@{/css/awardInfo.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/awardInfo.css}" rel="stylesheet">
     <link th:href="@{/css/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.min.css}" rel="stylesheet">
 
@@ -30,8 +30,9 @@
         <input type="hidden" id="user_id" name="user_id" th:value="${user_id}">
         <input type="hidden" name="act_id" th:value="${act_id}">
     </form>
+    <input type="hidden" name="id" th:value="${user_id}">
     <div id="info_footer">
-
+        <a th:href="@{/reflash}+@{?id=}+${user_id}" th:if="${act_status != 2}"><button class="btn btn-lg btn-success back-btn" >继续抽奖</button></a>
     </div>
     <!-- Mainly scripts -->
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>

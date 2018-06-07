@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.websocket.Session;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class LoginController {
     private PathConfig pathConfig;
 
     @PostMapping("/login")
-    public String login(Map<String,Object> map, User user,String flag){
+    public String login(Map<String,Object> map, User user,String flag,RedirectAttributes attributes){
         //获得subject
         Subject currentUser  = SecurityUtils.getSubject();
         if(!currentUser.isAuthenticated()){
@@ -62,6 +63,7 @@ public class LoginController {
         }
         if (act_status == 2) {
             //若活动已经结束，则前往奖品查询页面
+            attributes.addFlashAttribute("act_status",act_status);
             return "redirect:/pbaward/" + user_temp.getId();
         }
 
@@ -102,8 +104,9 @@ public class LoginController {
     @GetMapping("/reflash")
     public String reflash(ModelMap modelMap, User user,Map<String,Object> map) {
         //更新session中user信息
-        modelMap.addAttribute("user",userService.findById(user.getId()));
-        map.put("act_status",activityService.getStatusById(user.getAct_id()));
+        User user_temp  = userService.findById(user.getId());
+        modelMap.addAttribute("user",user_temp);
+        map.put("act_status",activityService.getStatusById(user_temp.getAct_id()));
         return "public/pb_index";
     }
 
