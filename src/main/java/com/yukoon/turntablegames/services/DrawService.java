@@ -24,7 +24,7 @@ public class DrawService {
             int range = 0;
             int rotation = 0;
             for (Reward element:list) {
-                int temp = (int)(element.getProbability()*100);
+                int temp = (int)(element.getProbability()*1000);
                 range = range + temp;
                 System.out.println(range);
 
@@ -41,7 +41,7 @@ public class DrawService {
             int range = 0;
             int rotation = 0;
             for (Reward element:list) {
-                int temp = (int)(element.getProbability()*100);
+                int temp = (int)(element.getProbability()*1000);
                 range = range + temp;
                 System.out.println(range);
                 if (i < range) {
@@ -61,11 +61,11 @@ public class DrawService {
     //根据概率校正抽出数字
     public Integer getRange(List<Reward> list) {
         Random random  = new Random();
-        int i = random.nextInt(100);
+        int i = random.nextInt(1000);
         System.out.println(i);
         int range = 0;
         for (Reward element:list) {
-            int temp = (int) (element.getProbability() * 100);
+            int temp = (int) (element.getProbability() * 1000);
             range = range + temp;
         }
         while (i>=range){
