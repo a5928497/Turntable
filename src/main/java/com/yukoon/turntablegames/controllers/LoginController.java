@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.websocket.Session;
@@ -99,9 +100,10 @@ public class LoginController {
 
     //前台刷新页面
     @GetMapping("/reflash")
-    public String reflash(ModelMap modelMap, User user) {
+    public String reflash(ModelMap modelMap, User user,Map<String,Object> map) {
         //更新session中user信息
         modelMap.addAttribute("user",userService.findById(user.getId()));
+        map.put("act_status",activityService.getStatusById(user.getAct_id()));
         return "public/pb_index";
     }
 
