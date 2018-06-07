@@ -329,9 +329,9 @@
     </build>
 
     <scm>
-        <url>https://github.com/chzr888/turntablegames.git</url>
-        <connection>scm:git:https://github.com/chzr888/turntablegames.git</connection>
-        <developerConnection>scm:git:https://github.com/chzr888/turntablegames.git</developerConnection>
+        <url>https://github.com/a5928497/turntable.git</url>
+        <connection>scm:git:https://github.com/a5928497/turntable.git</connection>
+        <developerConnection>scm:https://github.com/a5928497/turntable.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
