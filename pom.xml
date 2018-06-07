@@ -331,7 +331,7 @@
     <scm>
         <url>https://github.com/a5928497/turntable.git</url>
         <connection>scm:git:https://github.com/a5928497/turntable.git</connection>
-        <developerConnection>scm:https://github.com/a5928497/turntable.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/a5928497/turntable.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
