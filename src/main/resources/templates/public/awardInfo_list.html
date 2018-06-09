@@ -10,7 +10,7 @@
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"  rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"  rel="stylesheet">
-    <link th:href="@{/css/awardInfo.css}" rel="stylesheet">
+    <link th:href="@{/css/awardInfo.min.css}" rel="stylesheet">
     <link th:href="@{/css/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.min.css}" rel="stylesheet">
 
@@ -19,9 +19,12 @@
 <body class="gray-bg">
     <div id="main_container">
     </div>
-    <div class="info_body" th:each="awardInfo:${awardInfos}">
+    <div class="info_body" th:each="awardInfo:${awardInfos}" th:if="${awardInfos!=null}">
             <span class="info_area" th:text="${awardInfo.reward_name}"></span>
             <button class="cashingBTN" th:attr="put_uri=@{/pbaward/}+${awardInfo.id}" th:if="${awardInfo.is_Cash == 0}">可兑换</button>
+    </div>
+    <div class="info_body" th:if="${#lists.isEmpty(awardInfos)}">
+        <span class="info_area" th:text="暂时还没奖品！"></span>
     </div>
     <input type="hidden" id="wrong_recommender" th:if="${#httpServletRequest.getParameter('flag')!=null}">
     <form id="cashingForm" method="post" modelAttribute="recommender">

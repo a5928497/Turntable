@@ -14,19 +14,17 @@
 .plate {
     background: url(../images/plate.png) no-repeat;
     background-size: 100% 100%;
-    margin-top: 18%;
+    margin-top: 30%;
 }
 #plate_holder {
     min-width: 255px;
 }
 .lottery{
-    /*background: url(../images/lottery.png) no-repeat;*/
     background-size: 100% 100%;
     position: relative;
     top: -57%;
     left: -2%;
     margin-left: 10%;
-
 }
 .drawBTN {
     background: url(../images/btn.png) no-repeat;
@@ -53,7 +51,6 @@
 #times_left {
     position: relative;
     left: 30%;
-    margin-top: 8%;
     font-size: 12pt;
     font-weight: 900;
 }
