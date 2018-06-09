@@ -55,9 +55,12 @@ public class UploadController {
             return "redirect:/touploadimg/"+act_id;
         }
         //重命名文件
-        fileName = "lottery"+act_id+".jpg";
+        fileName = "lottery"+act_id+".png";
         try {
+            //上传图片
             FileUtil.uploadFile(pic.getBytes(),filePath,fileName);
+            //压缩图片
+            FileUtil.resizeImg(filePath+fileName,400,400);
         }catch (Exception e) {
             uploadMsg = "图片上传出现错误,请重新上传!";
 			attributes.addFlashAttribute("uploadMsg",uploadMsg);
