@@ -15,7 +15,7 @@ $(function () {
     */
     var img_path = $("#img_path").val();
     var act_id = $act_id.val();
-    var img_url  = "/local_images/lottery"+act_id + ".jpg";
+    var img_url  = "/local_images/lottery"+act_id + ".png";
     var ph_width = parseInt($plate_holder.css("width"));
     var pl_rate = 0.8286;
     var act_status = parseInt($("#act_status").val());
