@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.controllers;
 
 import com.yukoon.turntablegames.entities.Recommender;
+import com.yukoon.turntablegames.services.ActivityService;
 import com.yukoon.turntablegames.services.AwardInfoService;
 import com.yukoon.turntablegames.services.RecommenderService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -19,6 +20,8 @@ public class AwardInfoController {
     private AwardInfoService awardInfoService;
     @Autowired
     private RecommenderService recommenderService;
+    @Autowired
+    private ActivityService activityService;
 
     //后台查询同一活动下所有中奖情况
     @RequiresRoles("admin")
@@ -43,7 +46,9 @@ public class AwardInfoController {
     @GetMapping("pbaward/{id}")
     public String pbFindAllByUserid(@PathVariable("id")Integer id, Map<String,Object> map) {
         map.put("awardInfos",awardInfoService.findAllByUserid(id));
-        map.put("act_id",awardInfoService.findActidByUserid(id));
+        Integer act_id = awardInfoService.findActidByUserid(id);
+        map.put("act_id",act_id);
+        map.put("act_status",activityService.getStatusById(act_id));
         map.put("user_id",id);
         return "public/awardInfo_list";
     }

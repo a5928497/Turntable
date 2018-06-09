@@ -35,3 +35,9 @@
     background-color: #2b766e;
     color: whitesmoke;
 }
+
+.back-btn {
+    position: relative;
+    margin-left: 35%;
+    margin-top: 8%;
+}
