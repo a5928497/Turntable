@@ -12,7 +12,7 @@
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"  rel="stylesheet">
     <link th:href="@{/css/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.min.css}" rel="stylesheet">
-    <link th:href="@{/css/pb_index.min.css}" rel="stylesheet">
+    <link th:href="@{/css/pb_index.css}" rel="stylesheet">
 
 </head>
 
@@ -31,6 +31,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="foot">
         <div id="times_container">
             <p id="times_left">
                 <span>您还剩下</span><span id="available_draw_times_msg" th:text="${session.user.available_draw_times}"></span><span>次抽奖机会</span>
