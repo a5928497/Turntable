@@ -9,8 +9,8 @@
     <title>Login</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}" rel="stylesheet">
-    <link th:href="@{/css/pb_login.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/pb_login.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.min.css}" rel="stylesheet">
 
@@ -18,15 +18,14 @@
 
 <body class="gray-bg">
     <div id="main_container">
-        <div  class="middle-box text-center loginscreen">
-                <form method="post" id="loginForm" action="/login">
-                        <input type="text" id="username" name="username"><br>
-                        <input type="password" id="password" name="password"><br>
-                    <button type="submit" id="submitBTN" ><div id="button_holder"></div></button>
-                </form>
-        </div>
     </div>
-
+    <div id="foot">
+        <form method="post" id="loginForm" action="/login">
+            <label id="usr_lable">手机号：</label><input type="text" id="username" name="username"><br>
+            <label id="psw_lable">口 令：</label><input type="password" id="password" name="password"><br>
+            <button type="submit" id="submitBTN" ><div id="button_holder"></div></button>
+        </form>
+    </div>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
 </body>
