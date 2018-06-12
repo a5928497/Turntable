@@ -197,21 +197,21 @@
                     <include>**/*.yml</include>
                     <include>**/*.xml</include>
                 </includes>
-                <!--<excludes>-->
-                    <!--<exclude>application.yml</exclude>-->
-                    <!--<exclude>ehcache.xml</exclude>-->
-                    <!--<exclude>pathconfig.yml</exclude>-->
-                <!--</excludes>-->
+                <excludes>
+                    <exclude>application.yml</exclude>
+                    <exclude>ehcache.xml</exclude>
+                    <exclude>pathconfig.yml</exclude>
+                </excludes>
             </resource>
-            <!--<resource>-->
-                <!--<directory>src/main/prod_resources</directory>-->
-            <!--<includes>-->
-                <!--<include>application.yml</include>-->
-                <!--<include>ehcache.xml</include>-->
-                <!--<include>pathconfig.yml</include>-->
-                <!--<include>logback.xml</include>-->
-            <!--</includes>-->
-        <!--</resource>-->
+            <resource>
+                <directory>src/main/prod_resources</directory>
+            <includes>
+                <include>application.yml</include>
+                <include>ehcache.xml</include>
+                <include>pathconfig.yml</include>
+                <include>logback.xml</include>
+            </includes>
+        </resource>
         </resources>
 
         <plugins>
