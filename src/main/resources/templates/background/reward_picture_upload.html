@@ -18,9 +18,13 @@
     <link th:href="@{/webjars/codemirror/5.33.0/lib/codemirror.css}" rel="stylesheet">
     <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
     <style type="text/css">
-        img {
+        #lottery {
             width: 300px;
             height: 300px;
+        }
+        #arrow {
+            position: relative;
+            margin-left: -161px;
         }
     </style>
 </head>
@@ -53,7 +57,11 @@
                     <h5>图片上传（注意：文件最大不超过1MB）</h5>
                 </div>
                 <div class="ibox-content">
+                    <div>
                     <img src="#" id="lottery" >
+                        <img  id="arrow" th:src="@{/images/arrow.png}">
+                    </div>
+                    <p>注意：箭头应指向谢谢惠顾右边一格的中心位置！</p>
                     <form action="/imgupload" enctype="multipart/form-data" method="post">
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
@@ -102,7 +110,7 @@
     //根据路径获取图片
     var img_url  ="/local_images/lottery"+act_id + ".png";
     $("#lottery").attr("src",img_url).one("error",function (e) {
-        $(this).remove();
+        $(this).parent().remove();
     });
 </script>
 
