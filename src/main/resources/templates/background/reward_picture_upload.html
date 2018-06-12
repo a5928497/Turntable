@@ -57,11 +57,11 @@
                     <h5>图片上传（注意：文件最大不超过1MB）</h5>
                 </div>
                 <div class="ibox-content">
-                    <div>
+                    <div id="img_container">
                     <img src="#" id="lottery" >
                         <img  id="arrow" th:src="@{/images/arrow.png}">
                     </div>
-                    <p>注意：箭头应指向谢谢惠顾右边一格的中心位置！</p>
+                    <p>注意：箭头应指向谢谢惠顾右边一格的中心位置并贴近上左两条红线！</p>
                     <form action="/imgupload" enctype="multipart/form-data" method="post">
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                             <div class="form-control fileinput" data-trigger="fileinput">
@@ -108,7 +108,8 @@
     var localhostPaht=curWwwPath.substring(0,pos);
     var act_id = $("#act_id").val();
     //根据路径获取图片
-    var img_url  ="/local_images/lottery"+act_id + ".png";
+    var img_url  ="/local_images/lottery"+act_id + ".png?"+Math.random();
+    $("#lottery").parent().css("border-top","2px solid red").css("border-left","2px solid red").css("width",308);
     $("#lottery").attr("src",img_url).one("error",function (e) {
         $(this).parent().remove();
     });
