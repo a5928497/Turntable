@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -92,9 +93,10 @@ public class UploadController {
     @RequiresPermissions("query")
     @PostMapping("/excelupload")
     public String uploadExcel(@RequestParam("excel")MultipartFile excel,Integer act_id,RedirectAttributes attributes) {
+        List<String> repeatNames;
         try {
             InputStream in = excel.getInputStream();
-            excelUploadService.importUserExcel(in,excel,act_id);
+            repeatNames = excelUploadService.importUserExcel(in,excel,act_id);
             in.close();
         }catch (Exception e){
         	e.printStackTrace();
@@ -103,7 +105,11 @@ public class UploadController {
 			return "redirect:/touploadexcel/"+act_id;
         }
 		System.out.println("成功");
-        attributes.addFlashAttribute("uploadMsg","上传成功！");
+        if (repeatNames.size() != 0 ){
+            attributes.addFlashAttribute("uploadMsg","上传成功！并去除了"+repeatNames.size()+"个重复的手机号");
+        }else {
+            attributes.addFlashAttribute("uploadMsg","上传成功！");
+        }
         return "redirect:/touploadexcel/"+act_id;
     }
 
