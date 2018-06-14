@@ -58,6 +58,10 @@ public class ActivityService {
         return activityMapper.getKeyByActId(id);
     }
 
+    public String findCashingInfoById(Integer id) {
+        return activityMapper.findCashingInfoById(id);
+    }
+
     public List<Activity> findAll() {
         return activityMapper.findAll();
     }

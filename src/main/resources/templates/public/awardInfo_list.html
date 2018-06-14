@@ -26,6 +26,10 @@
     <div class="info_body" th:if="${#lists.isEmpty(awardInfos)}">
         <span class="info_area" th:text="暂时还没奖品！"></span>
     </div>
+    <div class="info_body" th:if="${cashingInfo!=null}">
+            <span id="cashingInfoHead">兑奖提示：</span><br>
+            <span id="cashingInfoBody" th:text="${cashingInfo}"></span>
+    </div>
     <input type="hidden" id="wrong_recommender" th:if="${#httpServletRequest.getParameter('flag')!=null}">
     <form id="cashingForm" method="post" modelAttribute="recommender">
         <input type="hidden" name="_method" value="put">

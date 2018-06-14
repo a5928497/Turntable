@@ -50,6 +50,7 @@ public class AwardInfoController {
         map.put("act_id",act_id);
         map.put("act_status",activityService.getStatusById(act_id));
         map.put("user_id",id);
+        map.put("cashingInfo",activityService.findCashingInfoById(act_id));
         return "public/awardInfo_list";
     }
 
