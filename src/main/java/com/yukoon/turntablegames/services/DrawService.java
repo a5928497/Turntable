@@ -12,6 +12,8 @@ import java.util.Random;
 public class DrawService {
     //不含谢谢惠顾的最大礼品限值
     private final static int MAX_REWARD_NUMBER = 7;
+    //零的个数代表支持到小数位后多少位
+    private final static int MAX_DECIMAL_NUBER = 100000;
     @Autowired
     private RewardMapper rewardMapper;
 
@@ -24,7 +26,7 @@ public class DrawService {
             int range = 0;
             int rotation = 0;
             for (Reward element:list) {
-                int temp = (int)(element.getProbability()*1000);
+                int temp = (int)(element.getProbability()*MAX_DECIMAL_NUBER);
                 range = range + temp;
                 System.out.println(range);
 
@@ -41,7 +43,7 @@ public class DrawService {
             int range = 0;
             int rotation = 0;
             for (Reward element:list) {
-                int temp = (int)(element.getProbability()*1000);
+                int temp = (int)(element.getProbability()*MAX_DECIMAL_NUBER);
                 range = range + temp;
                 System.out.println(range);
                 if (i < range) {
@@ -61,11 +63,11 @@ public class DrawService {
     //根据概率校正抽出数字
     public Integer getRange(List<Reward> list) {
         Random random  = new Random();
-        int i = random.nextInt(1000);
+        int i = random.nextInt(MAX_DECIMAL_NUBER);
         System.out.println(i);
         int range = 0;
         for (Reward element:list) {
-            int temp = (int) (element.getProbability() * 1000);
+            int temp = (int) (element.getProbability() * MAX_DECIMAL_NUBER);
             range = range + temp;
         }
         while (i>=range){
