@@ -23,6 +23,7 @@ public class ActivityService {
     @Transactional
     public void addAct(Activity activity) {
         String key = KeyUtil.getKey(KEY_LENGTH);
+        //保证活动唯一性
         while (activityMapper.keyVaildate(key) != null || key.equals("admin")) {
             key = KeyUtil.getKey(KEY_LENGTH);
         }
@@ -32,6 +33,10 @@ public class ActivityService {
         activityMapper.addAct(activity);
     }
 
+    @Transactional
+    public Activity findDetailsById(Integer id) {
+        return activityMapper.findDetailsById(id);
+    }
     @Transactional
     public void closeAct(Integer id) {
         activityMapper.closeAct(id);

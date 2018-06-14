@@ -201,6 +201,7 @@
                     <exclude>application.yml</exclude>
                     <exclude>ehcache.xml</exclude>
                     <exclude>pathconfig.yml</exclude>
+                    <exclude>logback.xml</exclude>
                 </excludes>
             </resource>
             <resource>

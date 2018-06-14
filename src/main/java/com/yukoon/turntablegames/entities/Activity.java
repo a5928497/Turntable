@@ -14,4 +14,5 @@ public class Activity {
     private String activityName;
     private Integer act_status;
     private String act_key;
+    private String cashingInfo;
 }

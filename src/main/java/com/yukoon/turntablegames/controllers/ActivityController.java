@@ -36,6 +36,14 @@ public class ActivityController {
 
     @RequiresRoles("admin")
     @RequiresPermissions("query")
+    @GetMapping("/act/{id}")
+    public String actToEdit(@PathVariable("id")Integer id,Map<String,Object> map) {
+        map.put("activity",activityService.findDetailsById(id));
+        return "background/act_input";
+    }
+
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
     @GetMapping("/acts")
     public String list(Map<String,Object> map) {
         List<Activity> list  = activityService.findAll();
