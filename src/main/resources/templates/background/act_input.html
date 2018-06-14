@@ -44,9 +44,9 @@
                         </div>
                         <div class="ibox-content">
                             <form action="/act" method="post" class="form-horizontal" modelAttribute="activity">
+                                <!--若是修改，加入id和put隐藏域-->
                                 <input type="hidden" name="id" th:value="${activity.id}" th:if="${activity !=null}">
-                                <input type="hidden" name="act_status" th:value="${activity.act_status}" th:if="${activity !=null}">
-                                <input type="hidden" name="act_key" th:value="${activity.act_key}" th:if="${activity !=null}">
+                                <input type="hidden" th:name="_method" th:value="put" th:if="${activity !=null}">
                                 <div class="form-group"><label class="col-sm-2 control-label">活动名称</label>
                                     <div class="col-sm-10"><input name="activityName" th:value="${activity!=null}?${activity.activityName}" type="text" class="form-control"></div>
                                 </div>

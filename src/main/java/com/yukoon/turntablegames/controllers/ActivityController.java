@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,13 @@ public class ActivityController {
         activityService.addAct(activity);
         return "redirect:/acts";
     }
-
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
+    @PutMapping("/act")
+    public String actEdit(Activity activity) {
+        activityService.updateAct(activity);
+        return "redirect:/acts";
+    }
     @RequiresRoles("admin")
     @RequiresPermissions("query")
     @GetMapping("/act")

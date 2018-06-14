@@ -37,9 +37,15 @@ public class ActivityService {
     public Activity findDetailsById(Integer id) {
         return activityMapper.findDetailsById(id);
     }
+
     @Transactional
     public void closeAct(Integer id) {
         activityMapper.closeAct(id);
+    }
+
+    @Transactional
+    public void updateAct(Activity activity) {
+        activityMapper.updateAct(activity);
     }
 
     @Transactional

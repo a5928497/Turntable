@@ -20,6 +20,9 @@ public interface ActivityMapper {
     @Update("UPDATE activities SET act_status = 1 WHERE id = #{id}")
     public void openAct(Integer id);
 
+    @Update("UPDATE activities SET activityName=#{activityName},cashingInfo=#{cashingInfo} WHERE id=#{id}")
+    public void updateAct(Activity activity);
+
     @Select("Select id,activityName,act_status,act_key FROM activities WHERE act_key != 'admin'")
     public List<Activity> findAll();
 
