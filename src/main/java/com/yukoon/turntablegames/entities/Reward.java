@@ -16,7 +16,7 @@ public class Reward {
     private String rewardName;
     private Integer total;
     private Integer surplus;
-    private float probability;
+    private double probability;
     private Integer act_id;
     //旋转角度
     private Integer rotation;
