@@ -56,9 +56,7 @@
                                     <div class="col-sm-10"><input id="total" name="total" type="text" th:value="${reward!=null}?${reward.total}" class="form-control"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">剩余</label>
-                                    <div class="col-lg-10"><input type="text" disabled="" th:placeholder="${reward!=null}?${reward.surplus}" th:if="${reward!=null}" class="form-control"></div>
-                                    <input type="hidden" id="surplus" name="surplus" th:value="${reward!=null}?${reward.surplus} " th:if="${reward!=null}"/>
-                                    <div class="col-sm-10"><input name="surplus" th:if="${reward==null}" type="text" class="form-control"></div>
+                                    <div class="col-sm-10"><input name="surplus" th:value="${reward!=null}?${reward.surplus}" type="text" class="form-control"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">概率</label>
                                     <div class="col-sm-10"><input id="probability" name="probability" type="text" th:value="${reward!=null}?${reward.probability}" class="form-control"></div>
