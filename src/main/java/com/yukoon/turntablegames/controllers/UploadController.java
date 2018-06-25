@@ -106,7 +106,7 @@ public class UploadController {
         }
 		System.out.println("成功");
         if (repeatNames.size() != 0 ){
-            attributes.addFlashAttribute("uploadMsg","上传成功！并去除了"+repeatNames.size()+"个重复的手机号");
+            attributes.addFlashAttribute("uploadMsg","上传成功！并去除了EXCEL表中"+repeatNames.size()+"个重复的手机号");
         }else {
             attributes.addFlashAttribute("uploadMsg","上传成功！");
         }

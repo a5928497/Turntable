@@ -27,8 +27,8 @@ public interface UsersMapper {
     @Select("SELECT username FROM users WHERE id=#{id}")
     public String findUsernameById(Integer id);
 
-    @Select("SELECT username FROM users WHERE act_id=#{act_id} AND username = #{username}")
-    public List<String> findUsernameByActidAndUsername(User user);
+    @Select("SELECT id,username FROM users WHERE act_id=#{act_id} AND username = #{username}")
+    public Integer findIdByActidAndUsername(User user);
 
     @Select("SELECT act_id FROM users WHERE id=#{id}")
     public Integer findActidById(Integer id);

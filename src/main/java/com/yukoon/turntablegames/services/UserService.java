@@ -44,8 +44,17 @@ public class UserService {
     }
     @Transactional
     public void addUser(User user) {
-        user.setPassword(EncodeUtil.encodePassword(activityMapper.getKeyByActId(user.getAct_id()),user.getUsername())).setRole_id(1);
-        usersMapper.addUser(user);
+        //查询用户是否存在于数据库
+        Integer user_id = usersMapper.findIdByActidAndUsername(user);
+        if ( user_id == null) {
+            //若不存在，插入数据
+            user.setPassword(EncodeUtil.encodePassword(activityMapper.getKeyByActId(user.getAct_id()),user.getUsername())).setRole_id(1);
+            usersMapper.addUser(user);
+        }else {
+            //若用户已存在，覆盖
+            user.setId(user_id);
+            usersMapper.updateUser(user);
+        }
     }
 
     public Integer getRoleidById(Integer id) {

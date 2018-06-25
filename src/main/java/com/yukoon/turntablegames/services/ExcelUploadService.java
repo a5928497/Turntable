@@ -24,6 +24,7 @@ public class ExcelUploadService {
 		List<List<Object>> listob = ExcelUtil.getUserstByExcel(in,file.getOriginalFilename());
 		List<User> users  = new ArrayList<>();
 		List<String> repeatUser = new ArrayList<>();
+		List<User> updateUser = new ArrayList<>();
 		for (int i = 0;i<listob.size();i++) {
 			boolean flag = false;
 			List<Object> ob = listob.get(i);
@@ -46,19 +47,25 @@ public class ExcelUploadService {
 				repeatUser.add(user.getUsername());
 			}
 		}
-		//查询数据库去重
+		//查询数据库更新已存在手机号信息
 		for (int i = 0;i<users.size();) {
 			User temp = users.get(i);
-			System.out.println(temp);
-			if (usersMapper.findUsernameByActidAndUsername(temp).size() != 0) {
-				System.out.println("有重复");
-				repeatUser.add(temp.getUsername());
+			Integer temp_id = usersMapper.findIdByActidAndUsername(temp);
+			if (temp_id != null) {
+				System.out.println("有内容需要覆盖");
+				temp.setId(temp_id);
+				updateUser.add(temp);
 				users.remove(temp);
 				}else {
 				i++;
 			}
 		}
-		System.out.println(users);
+		if (updateUser.size() != 0 ) {
+			System.out.println("updateusers:"+updateUser);
+			for (User temp: updateUser) {
+				usersMapper.updateUser(temp);
+			}
+		}
 		if (users.size() !=0) {
 			usersMapper.insertAll(users);
 		}
