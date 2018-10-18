@@ -3,7 +3,7 @@ package com.yukoon.turntablegames.controllers;
 import com.yukoon.turntablegames.entities.Recommender;
 import com.yukoon.turntablegames.services.ActivityService;
 import com.yukoon.turntablegames.services.AwardInfoService;
-import com.yukoon.turntablegames.services.RecommenderService;
+import com.yukoon.turntablegames.services.RedeemCodeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class AwardInfoController {
     @Autowired
     private AwardInfoService awardInfoService;
     @Autowired
-    private RecommenderService recommenderService;
+    private RedeemCodeService redeemCodeService;
     @Autowired
     private ActivityService activityService;
 
@@ -54,23 +54,4 @@ public class AwardInfoController {
         return "public/awardInfo_list";
     }
 
-    //后台兑换
-    @RequiresRoles("admin")
-    @RequiresPermissions("query")
-    @PutMapping("/award/{id}")
-    public String cashAward(@PathVariable("id")Integer id,String act_id) {
-        awardInfoService.cashAward(id);
-        //根据act_id中地址跳转到全部中奖情况或具体客户中奖情况
-        return "redirect:"+act_id;
-    }
-
-//    前台兑换
-    @PutMapping("/pbaward/{rid}")
-    public String pbcashAward(@PathVariable("rid")Integer rid, Recommender recommender,Integer user_id, Map<String,Object> map) {
-        if(recommenderService.vaildateRecommender(recommender)){
-            awardInfoService.cashAward(rid);
-            return "redirect:/pbaward/"+user_id;
-        }
-        return "redirect:/pbaward/"+user_id + "?flag=flase";
-    }
 }

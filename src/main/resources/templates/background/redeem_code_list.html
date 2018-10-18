@@ -60,7 +60,7 @@
                                 <tr th:each="code:${codes}">
                                     <td th:text="${code.id}">id</td>
                                     <td th:text="${code.redeemCode}">redeemCode</td>
-                                    <td th:text="${code.cashingDate}">redeemCode</td>
+                                    <td th:text="${code.status ==0}?可用:已送出">status</td>
                                     <td>
                                         <a th:href="@{/editcode/}+${code.id}"><button class="btn btn-sm btn-warning">编辑</button></a>
                                         <button  th:attr="del_uri = @{/code/}+${code.id}" class="btn btn-sm btn-danger deleteBTN">删除</button>

@@ -15,6 +15,6 @@ public class RedeemCode {
 	private Integer id;
 	private String redeemCode;
 	private Integer reward_id;
-	private Date cashingDate;
+	private Integer status;
 
 }

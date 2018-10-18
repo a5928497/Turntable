@@ -1,7 +1,9 @@
 package com.yukoon.turntablegames.services;
 
+import com.yukoon.turntablegames.entities.RedeemCode;
 import com.yukoon.turntablegames.entities.User;
 import com.yukoon.turntablegames.mappers.ActivityMapper;
+import com.yukoon.turntablegames.mappers.RedeemCodeMapper;
 import com.yukoon.turntablegames.mappers.UsersMapper;
 import com.yukoon.turntablegames.utils.EncodeUtil;
 import com.yukoon.turntablegames.utils.ExcelUtil;
@@ -19,6 +21,8 @@ public class ExcelUploadService {
 	private ActivityMapper activityMapper;
 	@Autowired
 	private UsersMapper usersMapper;
+	@Autowired
+	private RedeemCodeMapper redeemCodeMapper;
 
 	public List<String> importUserExcel(InputStream in, MultipartFile file, Integer act_id) throws Exception {
 		List<List<Object>> listob = ExcelUtil.getUserstByExcel(in,file.getOriginalFilename());
@@ -70,5 +74,44 @@ public class ExcelUploadService {
 			usersMapper.insertAll(users);
 		}
 		return repeatUser;
+	}
+
+	public List<String> importCodesExcel(InputStream in, MultipartFile file, Integer act_id) throws Exception {
+		List<List<Object>> listob = ExcelUtil.getUserstByExcel(in,file.getOriginalFilename());
+		List<RedeemCode> codes  = new ArrayList<>();
+		List<String> repeatCodes = new ArrayList<>();
+		for (int i = 0;i<listob.size();i++) {
+			boolean flag = false;
+			List<Object> ob = listob.get(i);
+			RedeemCode redeemCode = new RedeemCode();
+			redeemCode.setRedeemCode(String.valueOf(ob.get(0)));
+			redeemCode.setReward_id(Integer.valueOf(ob.get(1).toString()));
+			//excel表去重
+			for(RedeemCode temp:codes) {
+				flag = temp.getRedeemCode().equals(redeemCode.getRedeemCode());
+				if (flag == true) {
+					break;
+				}
+			}
+			if (flag == false) {
+				codes.add(redeemCode);
+			}else {
+				repeatCodes.add(redeemCode.getRedeemCode());
+			}
+		}
+		//查询数据库去重码
+		for (int i = 0;i<codes.size();) {
+			RedeemCode temp = codes.get(i);
+			RedeemCode redeemCode = redeemCodeMapper.findByRedeemCodeAndRewardId(temp);
+			if (null != redeemCode) {
+				repeatCodes.add(redeemCode.getRedeemCode());
+			}else {
+				i++;
+			}
+		}
+		if (codes.size() !=0) {
+			redeemCodeMapper.insertAll(codes);
+		}
+		return repeatCodes;
 	}
 }

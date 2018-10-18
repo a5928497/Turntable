@@ -113,4 +113,46 @@ public class UploadController {
         return "redirect:/touploadexcel/"+act_id;
     }
 
+    //后台前往兑换码Excel上传
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
+    @GetMapping("/touploadcodes/{act_id}")
+    public String toUploadCodes(@PathVariable("act_id") Integer act_id, Map<String,Object> map,HttpServletRequest request) {
+        Map<String,?> map1 = RequestContextUtils.getInputFlashMap(request);
+        String uploadMsg = null;
+        if (map1 != null) {
+            uploadMsg = map1.get("uploadMsg").toString();
+        }
+        if (uploadMsg !=null) {
+            map.put("uploadMsg",uploadMsg);
+        }
+        map.put("act_id",act_id);
+        return "background/code_excel_upload";
+    }
+
+    //后台进行兑换码Excel上传
+    @RequiresRoles("admin")
+    @RequiresPermissions("query")
+    @PostMapping("/codesupload")
+    public String uploadCodes(@RequestParam("excel")MultipartFile excel,Integer act_id,RedirectAttributes attributes) {
+        List<String> repeatNames;
+        try {
+            InputStream in = excel.getInputStream();
+            repeatNames = excelUploadService.importCodesExcel(in,excel,act_id);
+            in.close();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("失败");
+            attributes.addFlashAttribute("uploadMsg","上传失败，请重试！");
+            return "redirect:/touploadcodes/"+act_id;
+        }
+        System.out.println("成功");
+        if (repeatNames.size() != 0 ){
+            attributes.addFlashAttribute("uploadMsg","上传成功！并去除了EXCEL表中"+repeatNames.size()+"个重复的手机号");
+        }else {
+            attributes.addFlashAttribute("uploadMsg","上传成功！");
+        }
+        return "redirect:/touploadcodes/"+act_id;
+    }
+
 }

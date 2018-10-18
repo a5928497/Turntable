@@ -27,7 +27,6 @@ public class DrawController {
         map.put("act_id",user.getAct_id());
         Reward reward = awardInfoService.addAwardInfo(user);
         User u_temp = userService.findById(user.getId());
-        System.out.println(u_temp);
         modelMap.addAttribute("user",u_temp);
         return reward;
     }
