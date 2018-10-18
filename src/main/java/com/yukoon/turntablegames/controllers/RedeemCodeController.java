@@ -6,9 +6,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -16,6 +14,15 @@ import java.util.Map;
 public class RedeemCodeController {
 	@Autowired
 	private RedeemCodeService redeemCodeService;
+
+	@ModelAttribute
+	public void getCode(@RequestParam(value = "id",required = false)Integer id,Map<String,Object> map) {
+		//若为修改
+		if (null != id) {
+			RedeemCode redeemCode = redeemCodeService.findById(id);
+			map.put("redeemCode",redeemCode);
+		}
+	}
 
 	@RequiresRoles("admin")
 	@RequiresPermissions("query")
@@ -48,5 +55,21 @@ public class RedeemCodeController {
 	public String toEditCode(@PathVariable("id")Integer id, Map<String,Object> map) {
 		map.put("code",redeemCodeService.findById(id));
 		return "background/redeem_code_input";
+	}
+
+	@RequiresRoles("admin")
+	@RequiresPermissions("query")
+	@PutMapping("/code")
+	public String editCode(RedeemCode redeemCode) {
+		redeemCodeService.update(redeemCode);
+		return "redirect:/codes/" + redeemCode.getReward_id();
+	}
+
+	@RequiresRoles("admin")
+	@RequiresPermissions("query")
+	@DeleteMapping("/code/{id}")
+	public String delCode(@PathVariable("id")Integer id,Integer reward_id) {
+		redeemCodeService.delete(id);
+		return "redirect:/codes/" + reward_id;
 	}
 }

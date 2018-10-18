@@ -1,9 +1,7 @@
 package com.yukoon.turntablegames.mappers;
 
 import com.yukoon.turntablegames.entities.RedeemCode;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -17,4 +15,10 @@ public interface RedeemCodeMapper {
 
 	@Select("SELECT * from redeemcode where id = #{id}")
 	public RedeemCode findById(Integer id);
+
+	@Update("UPDATE redeemcode SET redeemCode = #{redeemCode},reward_id=#{reward_id},cashing_date = #{cashingDate} WHERE id = #{id}")
+	public void updateRedeemCode(RedeemCode redeemCode);
+
+	@Delete("DELETE FROM redeemcode WHERE id = #{id}")
+	public void delRedeemCode (Integer id);
 }

@@ -63,7 +63,7 @@
                                     <td th:text="${code.cashingDate}">redeemCode</td>
                                     <td>
                                         <a th:href="@{/editcode/}+${code.id}"><button class="btn btn-sm btn-warning">编辑</button></a>
-                                        <button  th:attr="del_uri = @{/recommender/}" class="btn btn-sm btn-danger deleteBTN">删除</button>
+                                        <button  th:attr="del_uri = @{/code/}+${code.id}" class="btn btn-sm btn-danger deleteBTN">删除</button>
                                     </td>
 
                                 </tr>
@@ -87,7 +87,7 @@
         </div>
     <form id="deleteForm" method="post">
         <input type="hidden" name="_method" value="delete">
-        <!--<input type="hidden" name="act_id" th:value="${act_id}">-->
+        <input type="hidden" name="reward_id" th:value="${reward_id}">
     </form>
 
 
