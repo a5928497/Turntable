@@ -1,6 +1,7 @@
 package com.yukoon.turntablegames.services;
 
 import com.yukoon.turntablegames.entities.Reward;
+import com.yukoon.turntablegames.mappers.RedeemCodeMapper;
 import com.yukoon.turntablegames.mappers.RewardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class DrawService {
     private final static int MAX_DECIMAL_NUBER = 100000;
     @Autowired
     private RewardMapper rewardMapper;
+    @Autowired
+    private RedeemCodeMapper redeemCodeMapper;
 
     public Reward randomChoice(Integer act_id){
         List<Reward> list = rewardMapper.getProbabilityByActid(act_id);
@@ -84,8 +87,8 @@ public class DrawService {
             System.out.println("抽取发生问题，将重新抽取");
             reward = randomChoice(act_id);
         }
-        if (reward.getSurplus() <1) {
-            //没有库存，返回谢谢惠顾
+        if (reward.getSurplus() <1 || redeemCodeMapper.findAvailableByRewardId(reward.getId()).size() <1) {
+            //没有库存或兑换码不足，返回谢谢惠顾
             int size = reward.getListSize()+1;
             int rotation = (360/size);
             reward = rewardMapper.thanks();

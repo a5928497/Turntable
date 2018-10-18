@@ -35,4 +35,9 @@ public class RedeemCodeService {
 	public void delete(Integer id) {
 		redeemCodeMapper.delRedeemCode(id);
 	}
+
+//	@Transactional
+//	public void cash(Integer id) {
+//		redeemCodeMapper.cashRedeemCode(id);
+//	}
 }

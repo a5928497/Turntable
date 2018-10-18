@@ -14,6 +14,9 @@ public interface RedeemCodeMapper {
 	@Select("SELECT * from redeemcode where reward_id = #{reward_id}")
 	public List<RedeemCode> findAllByRewardId(Integer reward_id);
 
+	@Select("SELECT * from redeemcode where reward_id = #{reward_id} AND status = 0")
+	public List<RedeemCode> findAvailableByRewardId(Integer reward_id);
+
 	@Select("SELECT * from redeemcode where id = #{id}")
 	public RedeemCode findById(Integer id);
 
@@ -22,6 +25,9 @@ public interface RedeemCodeMapper {
 
 	@Update("UPDATE redeemcode SET redeemCode = #{redeemCode},reward_id=#{reward_id},status = #{status} WHERE id = #{id}")
 	public void updateRedeemCode(RedeemCode redeemCode);
+
+	@Update("UPDATE redeemcode SET status = 1,user_id = #{user_id} WHERE id = #{id}")
+	public void cashRedeemCode(RedeemCode redeemCode);
 
 	@Delete("DELETE FROM redeemcode WHERE id = #{id}")
 	public void delRedeemCode (Integer id);

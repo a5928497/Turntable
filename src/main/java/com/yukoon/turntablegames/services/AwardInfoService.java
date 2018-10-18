@@ -1,13 +1,7 @@
 package com.yukoon.turntablegames.services;
 
-import com.yukoon.turntablegames.entities.AwardInfo;
-import com.yukoon.turntablegames.entities.AwardInof2human;
-import com.yukoon.turntablegames.entities.Reward;
-import com.yukoon.turntablegames.entities.User;
-import com.yukoon.turntablegames.mappers.ActivityMapper;
-import com.yukoon.turntablegames.mappers.AwardInfoMapper;
-import com.yukoon.turntablegames.mappers.RewardMapper;
-import com.yukoon.turntablegames.mappers.UsersMapper;
+import com.yukoon.turntablegames.entities.*;
+import com.yukoon.turntablegames.mappers.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +22,8 @@ public class AwardInfoService {
     private ActivityMapper activityMapper;
     @Autowired
     private DrawService drawService;
+    @Autowired
+    private RedeemCodeMapper redeemCodeMapper;
 
     public List<AwardInof2human> convert(List<AwardInfo> awardList) {
         List<AwardInof2human> list = new ArrayList<>();
@@ -87,6 +83,10 @@ public class AwardInfoService {
                 //扣减奖品
                 Reward reward_temp = new Reward().setId(reward.getId()).setSurplus(reward.getSurplus()-1);
                 rewardMapper.minusSurplus(reward_temp);
+                //发放兑换码
+                RedeemCode redeemCode = redeemCodeMapper.findAvailableByRewardId(reward.getId()).get(0);
+                redeemCode.setUser_id(user_temp.getId());
+                redeemCodeMapper.cashRedeemCode(redeemCode);
             }
         }
         return reward;

@@ -16,5 +16,6 @@ public class RedeemCode {
 	private String redeemCode;
 	private Integer reward_id;
 	private Integer status;
+	private Integer user_id;
 
 }
