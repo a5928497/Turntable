@@ -51,6 +51,10 @@ public class AwardInfoService {
         return convert(list);
     }
 
+    public AwardInfo findById(Integer id) {
+        return awardInfoMapper.findById(id);
+    }
+
     public Integer findActidByUserid(Integer id) {
         return usersMapper.findActidById(id);
     }
@@ -73,9 +77,6 @@ public class AwardInfoService {
                 usersMapper.minusAvailableDrawTimes(user_temp);
             }else {
                 //若不是谢谢惠顾
-                //添加得奖信息
-                AwardInfo awardInfo = new AwardInfo().setUser_id(user.getId()).setAct_id(reward.getAct_id())
-                        .setReward_id(reward.getId()).setIs_Cash(0).setWinning_date(new Date());
                 //扣减抽奖次数
                 User user_temp = new User().setId(user.getId()).setAvailable_draw_times(user.getAvailable_draw_times()-1);
                 //扣减奖品
@@ -83,11 +84,14 @@ public class AwardInfoService {
                 //发放兑换码
                 RedeemCode redeemCode = redeemCodeMapper.findAvailableByRewardId(reward.getId()).get(0);
                 redeemCode.setUser_id(user_temp.getId());
-                awardInfo.setCode_id(redeemCode.getId());
-                awardInfoMapper.addAwardInfo(awardInfo);
+                //添加得奖信息
+                AwardInfo awardInfo = new AwardInfo().setUser_id(user.getId()).setAct_id(reward.getAct_id())
+                        .setReward_id(reward.getId()).setIs_Cash(0).setWinning_date(new Date())
+                        .setCode_id(redeemCode.getId());
+                redeemCodeMapper.cashRedeemCode(redeemCode);
                 usersMapper.minusAvailableDrawTimes(user_temp);
                 rewardMapper.minusSurplus(reward_temp);
-                redeemCodeMapper.cashRedeemCode(redeemCode);
+                awardInfoMapper.addAwardInfo(awardInfo);
             }
         }
         return reward;

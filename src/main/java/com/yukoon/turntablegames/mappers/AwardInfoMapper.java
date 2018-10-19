@@ -23,6 +23,6 @@ public interface AwardInfoMapper {
     @Update("UPDATE AwardInfo SET is_Cash = 1,cashing_date = #{cashing_date} WHERE id=#{id}")
     public void cashAward(AwardInfo awardInfo);
 
-    @Insert("INSERT INTO AwardInfo(user_id,act_id,reward_id,is_cash,winning_date) VALUES (#{user_id},#{act_id},#{reward_id},#{is_Cash},#{winning_date})")
+    @Insert("INSERT INTO AwardInfo(user_id,act_id,reward_id,is_cash,winning_date,code_id) VALUES (#{user_id},#{act_id},#{reward_id},#{is_Cash},#{winning_date},#{code_id})")
     public void addAwardInfo(AwardInfo awardInfo);
 }

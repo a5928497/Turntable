@@ -21,7 +21,7 @@
     </div>
     <div class="info_body" th:each="awardInfo:${awardInfos}" th:if="${awardInfos!=null}">
             <span class="info_area" th:text="${awardInfo.reward_name}"></span>
-            <button class="cashingBTN" th:attr="put_uri=@{/pbaward/}+${awardInfo.id}" th:if="${awardInfo.is_Cash == 0}">兑换码</button>
+            <button class="cashingBTN" th:attr="get_uri=@{/getcode/}+${awardInfo.id}">兑换码</button>
     </div>
     <div class="info_body" th:if="${#lists.isEmpty(awardInfos)}">
         <span class="info_area" th:text="暂时还没奖品！"></span>
@@ -37,7 +37,7 @@
     <!-- Mainly scripts -->
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/pb_awardInfo_list.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/pb_awardInfo_list.js}"></script>
 </body>
 
 </html>

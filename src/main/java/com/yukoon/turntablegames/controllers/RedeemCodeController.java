@@ -1,6 +1,8 @@
 package com.yukoon.turntablegames.controllers;
 
+import com.yukoon.turntablegames.entities.AwardInfo;
 import com.yukoon.turntablegames.entities.RedeemCode;
+import com.yukoon.turntablegames.services.AwardInfoService;
 import com.yukoon.turntablegames.services.RedeemCodeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -14,6 +16,8 @@ import java.util.Map;
 public class RedeemCodeController {
 	@Autowired
 	private RedeemCodeService redeemCodeService;
+	@Autowired
+	private AwardInfoService awardInfoService;
 
 	@ModelAttribute
 	public void getCode(@RequestParam(value = "id",required = false)Integer id,Map<String,Object> map) {
@@ -71,5 +75,13 @@ public class RedeemCodeController {
 	public String delCode(@PathVariable("id")Integer id,Integer reward_id) {
 		redeemCodeService.delete(id);
 		return "redirect:/codes/" + reward_id;
+	}
+
+	//前台查询兑换码
+	@ResponseBody
+	@GetMapping("/getcode/{awardInfoId}")
+	public String pbGetcode(@PathVariable("awardInfoId")Integer awardInfoId) {
+		AwardInfo awardInfo = awardInfoService.findById(awardInfoId);
+		return redeemCodeService.findById(awardInfo.getCode_id()).getRedeemCode();
 	}
 }
