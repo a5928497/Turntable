@@ -201,7 +201,6 @@
                     <exclude>application.yml</exclude>
                     <exclude>ehcache.xml</exclude>
                     <exclude>pathconfig.yml</exclude>
-                    <exclude>logback.xml</exclude>
                 </excludes>
             </resource>
             <resource>
@@ -210,7 +209,6 @@
                 <include>application.yml</include>
                 <include>ehcache.xml</include>
                 <include>pathconfig.yml</include>
-                <include>logback.xml</include>
             </includes>
         </resource>
         </resources>
