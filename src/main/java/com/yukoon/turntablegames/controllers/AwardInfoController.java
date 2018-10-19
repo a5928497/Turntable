@@ -54,4 +54,6 @@ public class AwardInfoController {
         return "public/awardInfo_list";
     }
 
+
+
 }

@@ -76,16 +76,17 @@ public class AwardInfoService {
                 //添加得奖信息
                 AwardInfo awardInfo = new AwardInfo().setUser_id(user.getId()).setAct_id(reward.getAct_id())
                         .setReward_id(reward.getId()).setIs_Cash(0).setWinning_date(new Date());
-                awardInfoMapper.addAwardInfo(awardInfo);
                 //扣减抽奖次数
                 User user_temp = new User().setId(user.getId()).setAvailable_draw_times(user.getAvailable_draw_times()-1);
-                usersMapper.minusAvailableDrawTimes(user_temp);
                 //扣减奖品
                 Reward reward_temp = new Reward().setId(reward.getId()).setSurplus(reward.getSurplus()-1);
-                rewardMapper.minusSurplus(reward_temp);
                 //发放兑换码
                 RedeemCode redeemCode = redeemCodeMapper.findAvailableByRewardId(reward.getId()).get(0);
                 redeemCode.setUser_id(user_temp.getId());
+                awardInfo.setCode_id(redeemCode.getId());
+                awardInfoMapper.addAwardInfo(awardInfo);
+                usersMapper.minusAvailableDrawTimes(user_temp);
+                rewardMapper.minusSurplus(reward_temp);
                 redeemCodeMapper.cashRedeemCode(redeemCode);
             }
         }

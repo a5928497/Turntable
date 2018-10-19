@@ -19,4 +19,5 @@ public class AwardInfo {
     private Integer is_Cash;
     private Date winning_date;
     private Date cashing_date;
+    private Integer code_id;
 }

@@ -60,7 +60,7 @@ $(function () {
                                     if (data.rewardName == "thanks") {
                                         msg = "对不起，您本次没有中奖！"
                                     }else {
-                                        msg = "恭喜您抽到了" + data.rewardName;
+                                        msg = "恭喜您抽到了" + data.rewardName + "，请到我的奖品查询兑换码！";
                                     }
                                     rotation = parseInt(data.rotation)+360;
                                     console.log(rotation);

@@ -21,7 +21,7 @@
     </div>
     <div class="info_body" th:each="awardInfo:${awardInfos}" th:if="${awardInfos!=null}">
             <span class="info_area" th:text="${awardInfo.reward_name}"></span>
-            <button class="cashingBTN" th:attr="put_uri=@{/pbaward/}+${awardInfo.id}" th:if="${awardInfo.is_Cash == 0}">可兑换</button>
+            <button class="cashingBTN" th:attr="put_uri=@{/pbaward/}+${awardInfo.id}" th:if="${awardInfo.is_Cash == 0}">兑换码</button>
     </div>
     <div class="info_body" th:if="${#lists.isEmpty(awardInfos)}">
         <span class="info_area" th:text="暂时还没奖品！"></span>
@@ -30,13 +30,6 @@
             <span id="cashingInfoHead">兑奖提示：</span><br>
             <span id="cashingInfoBody" th:text="${cashingInfo}"></span>
     </div>
-    <input type="hidden" id="wrong_recommender" th:if="${#httpServletRequest.getParameter('flag')!=null}">
-    <form id="cashingForm" method="post" modelAttribute="recommender">
-        <input type="hidden" name="_method" value="put">
-        <input type="hidden" id="recommender_id" name="recommender_id">
-        <input type="hidden" id="user_id" name="user_id" th:value="${user_id}">
-        <input type="hidden" name="act_id" th:value="${act_id}">
-    </form>
     <input type="hidden" name="id" th:value="${user_id}">
     <div id="info_footer">
         <a th:href="@{/reflash}+@{?id=}+${user_id}" th:if="${act_status != 2}"><button class="btn btn-lg btn-success back-btn" >继续抽奖</button></a>
