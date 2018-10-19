@@ -85,8 +85,9 @@ public class AwardInfoService {
                 RedeemCode redeemCode = redeemCodeMapper.findAvailableByRewardId(reward.getId()).get(0);
                 redeemCode.setUser_id(user_temp.getId());
                 //添加得奖信息
+                Date date = new Date();
                 AwardInfo awardInfo = new AwardInfo().setUser_id(user.getId()).setAct_id(reward.getAct_id())
-                        .setReward_id(reward.getId()).setIs_Cash(0).setWinning_date(new Date())
+                        .setReward_id(reward.getId()).setIs_Cash(1).setWinning_date(date).setCashing_date(date)
                         .setCode_id(redeemCode.getId());
                 redeemCodeMapper.cashRedeemCode(redeemCode);
                 usersMapper.minusAvailableDrawTimes(user_temp);
