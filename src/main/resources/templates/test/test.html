@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="wrapper">
+        <button type="button">测试登陆</button>
+    </div>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script>
+    $(function () {
+        //完整路径
+        var curWwwPath=window.document.location.href;
+        //后缀
+        var pathName=window.document.location.pathname;
+        //前缀
+        var localhostPaht=curWwwPath.substring(0,curWwwPath.indexOf(pathName));
+        var url = localhostPaht + "/test";
+        var re_url = "";
+        $.get(url,function (data) {
+            re_url = data;
+        })
+        $("button").click(function () {
+            console.log(re_url);
+            window.location.href= re_url;
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
